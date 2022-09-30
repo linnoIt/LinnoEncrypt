@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'LinnoEncrypt_Example' do
+  pod 'LinnoEncrypt', :path => '../'
+
+  target 'LinnoEncrypt_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

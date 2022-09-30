@@ -1,0 +1,6 @@
+framework module LinnoEncrypt {
+  umbrella header "LinnoEncrypt-umbrella.h"
+
+  export *
+  module * { export * }
+}
