@@ -8,9 +8,9 @@
 import Foundation
 import CommonCrypto
 
-final class DES: SymmetricEncryptDecryptProducer {
+public final class DES: SymmetricEncryptDecryptProducer {
     
-    convenience init( key:String) {
+    public convenience init( key:String) {
         self.init()
         testKey = key
     }

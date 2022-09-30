@@ -9,7 +9,7 @@ import Foundation
 import CommonCrypto
 
 /** AES*/
-final class AES: SymmetricEncryptDecryptProducer {
+public final class AES: SymmetricEncryptDecryptProducer {
     
     public enum AESkeySize{
         case  AES128
@@ -18,7 +18,7 @@ final class AES: SymmetricEncryptDecryptProducer {
     }
     var keySize:AESkeySize?
     
-    convenience init( key:String, keySize:AESkeySize = .AES192) {
+    public convenience init( key:String, keySize:AESkeySize = .AES192) {
         self.init()
         testKey = key
         self.keySize = keySize
@@ -26,13 +26,13 @@ final class AES: SymmetricEncryptDecryptProducer {
     private override init() {
         super.init()
     }
+
+    public func replecekeySize(size:AESkeySize) {
+        keySize = size
+    }
     override func runEncryptDecry(data: Data, kState: kEncryptDecrypt) -> String {
        return _AESEncryptOrDecrypt(op: stateOp(kState: kState), data: data, key:testKey)
     }
-    func replecekeySize(size:AESkeySize) {
-        keySize = size
-    }
-    
     /**
      AES的加密过程 和 解密过程
      */

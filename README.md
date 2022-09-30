@@ -1,6 +1,6 @@
 # LinnoEncrypt
 
-[![CI Status](https://img.shields.io/travis/linnoIt/LinnoEncrypt.svg?style=flat)](https://travis-ci.org/linnoIt/LinnoEncrypt)
+
 [![Version](https://img.shields.io/cocoapods/v/LinnoEncrypt.svg?style=flat)](https://cocoapods.org/pods/LinnoEncrypt)
 [![License](https://img.shields.io/cocoapods/l/LinnoEncrypt.svg?style=flat)](https://cocoapods.org/pods/LinnoEncrypt)
 [![Platform](https://img.shields.io/cocoapods/p/LinnoEncrypt.svg?style=flat)](https://cocoapods.org/pods/LinnoEncrypt)
@@ -10,6 +10,8 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+Symmetric Encrypt & Symmetric Decrypt
 
 ## Installation
 

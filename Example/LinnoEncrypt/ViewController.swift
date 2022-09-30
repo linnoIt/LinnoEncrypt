@@ -14,7 +14,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let test = _3DES.init(key: "testkey")
+        let encryptString = test.encryptDecryptSuccess(sourceString: "10010",kState: .kEncrypt)
+        print("encryptString = \(encryptString)")
+        let decryptString = test.encryptDecryptSuccess(sourceString: encryptString, kState: .kDecrypt)
+        print("decryptString = \(decryptString)")
 //        let key = "testkey"
 //        let desString =
         // Do any additional setup after loading the view, typically from a nib.

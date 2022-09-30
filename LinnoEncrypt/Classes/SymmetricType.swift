@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum kEncryptDecrypt {
+public enum kEncryptDecrypt {
     case kEncrypt
     case kDecrypt
 }

@@ -8,16 +8,17 @@
 import Foundation
 import CommonCrypto
 
-class SymmetricEncryptDecryptProducer: SymmetricEncryptionBase {
+public class SymmetricEncryptDecryptProducer: SymmetricEncryptionBase {
 
     var testKey = "123456"
-    override func encryptDecryptSuccess(sourceString: String, kState: kEncryptDecrypt = .kEncrypt) -> String {
+    /// kState 默认为加密
+    public override func encryptDecryptSuccess(sourceString: String, kState: kEncryptDecrypt = .kEncrypt) -> String {
         guard sourceString.count > 0  else{
             return "sourceSting is empty"
         }
         return runEncryptDecry(data: stringData(sourceString: sourceString, kState: kState), kState: kState)
     }
-    func replacekey(key:String){
+    public func replacekey(key:String){
         testKey = key
     }
     func runEncryptDecry(data:Data, kState: kEncryptDecrypt) -> String{

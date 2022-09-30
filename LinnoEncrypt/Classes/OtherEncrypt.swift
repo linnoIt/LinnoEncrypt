@@ -8,7 +8,7 @@
 import Foundation
 import CommonCrypto
 /** CAST，RC4，RC2，Blowfish*/
-final class otherEncry: SymmetricEncryptDecryptProducer {
+public final class otherEncry: SymmetricEncryptDecryptProducer {
     
     public enum KeyLength:String{
         case  maxSize = "Max"
@@ -24,20 +24,20 @@ final class otherEncry: SymmetricEncryptDecryptProducer {
     private var keySize:KeyLength?
     private var encryption:WayOfEncryption?
     
-    convenience init( key:String, encryption:WayOfEncryption = .CAST, keySize:KeyLength = .maxSize) {
+    public convenience init( key:String, encryption:WayOfEncryption = .CAST, keySize:KeyLength = .maxSize) {
         self.init()
         _ = keyLengthKeySize(wayOfEncryption: encryption, keyLength: keySize)
         testKey = key
         self.keySize = keySize
         self.encryption = encryption
     }
-    func replecekeySize(size:KeyLength) {
+    public func replecekeySize(size:KeyLength) {
         keySize = size
     }
-    func repleceEncryption(encryp:WayOfEncryption) {
+    public func repleceEncryption(encryp:WayOfEncryption) {
         encryption = encryp
     }
-    func repleceEncryption(encryp:WayOfEncryption, size:KeyLength) {
+    public func repleceEncryption(encryp:WayOfEncryption, size:KeyLength) {
         replecekeySize(size: size)
         repleceEncryption(encryp: encryp)
     }
