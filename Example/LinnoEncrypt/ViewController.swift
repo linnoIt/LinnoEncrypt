@@ -10,17 +10,29 @@ import UIKit
 import LinnoEncrypt
 
 class ViewController: UIViewController {
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let test = _3DES.init(key: "testkey")
-        let encryptString = test.encryptDecryptSuccess(sourceString: "10010",kState: .kEncrypt)
+        let test:String = "test"
+        // swift
+        print("test md5 = \(test.Encrypt.md5)")
+        // oc
+        print("encryptSuccess = \(MD5().encryptSuccess(sourceString: test))")
+        // let des = DES.init(key: "testkey")
+        // let _3des = _3DES.init(key: "testkey")
+        
+        // otherEncry = CAST，RC4，RC2，Blowfish
+        // let cast = otherEncry.init(key: "testkey") || otherEncry.init(key: "testkey", encryption: .CAST, keySize: .maxSize)
+        
+        // AES = AES128  AES192 AES256
+        let aes = AES.init(key: "testkey",keySize: .AES256)
+        let encryptString = aes.encryptDecryptSuccess(sourceString: "10010",kState: .kEncrypt)
         print("encryptString = \(encryptString)")
-        let decryptString = test.encryptDecryptSuccess(sourceString: encryptString, kState: .kDecrypt)
+        let decryptString = aes.encryptDecryptSuccess(sourceString: encryptString, kState: .kDecrypt)
         print("decryptString = \(decryptString)")
-//        let key = "testkey"
-//        let desString =
+        
+        
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 

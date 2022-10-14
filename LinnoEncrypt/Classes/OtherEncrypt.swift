@@ -26,7 +26,6 @@ public final class otherEncry: SymmetricEncryptDecryptProducer {
     
     public convenience init( key:String, encryption:WayOfEncryption = .CAST, keySize:KeyLength = .maxSize) {
         self.init()
-        _ = keyLengthKeySize(wayOfEncryption: encryption, keyLength: keySize)
         testKey = key
         self.keySize = keySize
         self.encryption = encryption
@@ -51,17 +50,18 @@ public final class otherEncry: SymmetricEncryptDecryptProducer {
     
     private  func _OtherEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> String{
         let ccKeySize = keyLengthKeySize(wayOfEncryption: encryption ?? .CAST, keyLength: keySize ?? .maxSize)
-       let usekey = getBitKey(oldString: key, keyCount: ccKeySize)
-        return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, encryptionAlgorithm(wayOfEncryption: encryption!), CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), ccKeySize)
+        let usekey = getBitKey(oldString: key, keyCount: ccKeySize)
+        let alg_blockSize = encryptionAlgorithm(wayOfEncryption: encryption!)
+        return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, alg_blockSize.0 , CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), ccKeySize, alg_blockSize.1)
     }
 }
 extension otherEncry{
-    fileprivate func encryptionAlgorithm(wayOfEncryption:WayOfEncryption) -> UInt32 {
+    fileprivate func encryptionAlgorithm(wayOfEncryption:WayOfEncryption) -> (UInt32, Int) {
         switch wayOfEncryption {
-        case .CAST: return CCAlgorithm(kCCAlgorithmCAST)
-        case .RC4: return CCAlgorithm(kCCAlgorithmRC4)
-        case .RC2: return CCAlgorithm(kCCAlgorithmRC2)
-        case .Blowfish: return CCAlgorithm(kCCAlgorithmBlowfish)
+        case .CAST: return (CCAlgorithm(kCCAlgorithmCAST), kCCBlockSizeCAST)
+        case .RC4: return (CCAlgorithm(kCCAlgorithmRC4), kCCBlockSizeRC2)
+        case .RC2: return (CCAlgorithm(kCCAlgorithmRC2), kCCBlockSizeRC2)
+        case .Blowfish: return (CCAlgorithm(kCCAlgorithmBlowfish), kCCBlockSizeBlowfish)
         }
     }
     private func defaultKeyLengthString() -> String{

@@ -48,11 +48,12 @@ extension SymmetricEncryptDecryptProducer{
         }
         return newString
     }
-    
-    final internal func EncryptOrDecrypt(_ data:Data, _ key:UnsafeRawPointer, _ op:CCOperation, _ alg:CCAlgorithm, _ options: CCOptions, _ keyLength:Int)  -> String{
-        
+    /**
+        加密解密的核心方法
+     */
+    final internal func EncryptOrDecrypt(_ data:Data, _ key:UnsafeRawPointer, _ op:CCOperation, _ alg:CCAlgorithm, _ options: CCOptions, _ keyLength:Int, _ blockSize:Int)  -> String{
         let stringBufferSize    = size_t(data.count)
-        let bufferPtrSize       = (stringBufferSize + kCCBlockSize3DES) & ~(kCCBlockSize3DES - 1)
+        let bufferPtrSize       = (stringBufferSize + blockSize) & ~(blockSize - 1)
 
         let dataBytes           = (data as NSData).bytes
         let bufferPtr           = malloc(bufferPtrSize * MemoryLayout<UInt8>.size)
@@ -61,7 +62,7 @@ extension SymmetricEncryptDecryptProducer{
         
         var movedBytes:size_t   = 0
         
-        CCCrypt(op,
+        let res = CCCrypt(op,
                 alg,
                 options,
                 key,
@@ -75,6 +76,10 @@ extension SymmetricEncryptDecryptProducer{
         
         let resData = Data.init(bytes: bufferPtr!, count: movedBytes)
         var resString:String
+        
+        guard res == kCCSuccess else {
+            return "EncryptOrDecrypt Error code = \(res)"
+        }
         if op == 0 {
             resString  = resData.base64EncodedString(options: .lineLength64Characters)
         }else{

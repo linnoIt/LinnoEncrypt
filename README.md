@@ -11,7 +11,9 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-Symmetric Encrypt & Symmetric Decrypt
+Symmetric Encrypt & Asymmetric Decrypt
+
+Asymmetric support md5 
 
 ## Installation
 

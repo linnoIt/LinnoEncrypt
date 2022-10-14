@@ -31,6 +31,6 @@ public final class DES: SymmetricEncryptDecryptProducer {
      */
     private  func DESEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> String{
         let usekey = getBitKey(oldString: key, keyCount: kCCKeySizeDES)
-       return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, CCAlgorithm(kCCAlgorithmDES), CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), kCCKeySizeDES)
+       return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, CCAlgorithm(kCCAlgorithmDES), CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), kCCKeySizeDES, kCCBlockSizeDES)
     }
 }

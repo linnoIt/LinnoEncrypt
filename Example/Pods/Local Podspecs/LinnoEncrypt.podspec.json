@@ -1,6 +1,6 @@
 {
   "name": "LinnoEncrypt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "A short description of LinnoEncrypt.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/linnoIt/LinnoEncrypt",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/linnoIt/LinnoEncrypt.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "12.0"
   },
   "source_files": "LinnoEncrypt/Classes/**/*"
 }

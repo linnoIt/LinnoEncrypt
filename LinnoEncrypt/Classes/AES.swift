@@ -48,6 +48,6 @@ public final class AES: SymmetricEncryptDecryptProducer {
         }
 
        let usekey = getBitKey(oldString: key, keyCount: ccKeySize)
-       return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, CCAlgorithm(alg), CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), ccKeySize)
+        return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, CCAlgorithm(alg), CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), ccKeySize ,kCCBlockSizeAES128)
     }
 }
