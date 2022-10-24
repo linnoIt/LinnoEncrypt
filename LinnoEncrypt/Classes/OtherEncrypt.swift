@@ -30,12 +30,15 @@ public final class otherEncry: SymmetricEncryptDecryptProducer {
         self.keySize = keySize
         self.encryption = encryption
     }
+    /** 改变加密长度keySize */
     public func replecekeySize(size:KeyLength) {
         keySize = size
     }
+    /** 改变加密方式encryption */
     public func repleceEncryption(encryp:WayOfEncryption) {
         encryption = encryp
     }
+    /** 改变加密方式encryption和加密长度keySize */
     public func repleceEncryption(encryp:WayOfEncryption, size:KeyLength) {
         replecekeySize(size: size)
         repleceEncryption(encryp: encryp)

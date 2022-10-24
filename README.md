@@ -1,6 +1,6 @@
 # LinnoEncrypt
 
-
+[![Swift](https://img.shields.io/badge/Swift-5-orange?style=flat-square)](https://img.shields.io/badge/Swift-5-Orange?style=flat-square)
 [![Version](https://img.shields.io/cocoapods/v/LinnoEncrypt.svg?style=flat)](https://cocoapods.org/pods/LinnoEncrypt)
 [![License](https://img.shields.io/cocoapods/l/LinnoEncrypt.svg?style=flat)](https://cocoapods.org/pods/LinnoEncrypt)
 [![Platform](https://img.shields.io/cocoapods/p/LinnoEncrypt.svg?style=flat)](https://cocoapods.org/pods/LinnoEncrypt)
@@ -13,7 +13,17 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 Symmetric Encrypt & Asymmetric Decrypt
 
-Asymmetric support md5 
+Symmetric support:
+
+    AES DES 3DES CAST RC4 RC2 Blowfish
+
+hash support:
+
+    md5 sha1 sha256 sha384 sha512
+
+Asymmetric support:
+
+    RSA
 
 ## Installation
 

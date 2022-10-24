@@ -7,8 +7,12 @@
 
 import Foundation
 
-public class SymmetricEncryptionBase: NSObject,SymmetricType {
-    public func encryptDecryptSuccess(sourceString: String, kState: kEncryptDecrypt) -> String {
-        return "error"
+public class SymmetricEncryptionBase: NSObject,EncryptDecryptType {
+    
+    public func encrypt(_ sourceString:String) -> String{
+        encryptAbstractMethod()
+    }
+    public func decrypt(_ sourceString:String) -> String{
+        encryptAbstractMethod()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 
 /*MD5以512位分组来处理输入的信息，且每一分组又被划分为16个32位子分组，算法的输出由四个32位分组组成，将这四个32位分组级联后将生成一个128位散列值。
@@ -13,13 +14,13 @@ import Foundation
  链接变量进行循环运算，得出结果。MD5中有四个32位被称作链接变量（Chaining Variable）的整数参数，他们分别为：A=0x01234567，B=0x89abcdef，C=0xfedcba98，D=0x76543210（此处为16进制原始数据）。当设置好这四个链接变量后，就开始进入算法的四轮循环运算
  */
 
-/// 项目需要兼容oc，所以实现MD5类，类继承的 encryptDecryptSuccess方法来完成转换
 
-public final class MD5:AsymmetricType{
+/// iOS13之前，系统方法不提供MD5实现
+/// 项目需要兼容oc，类继承的 hashString方法来完成转换
 
+public final class MD5_USER:HashType{
     // 实现协议的 message
     var message: [UInt8] = []
-    // 实现AsymmetricEncryptionBase 中的协议方法
 
     // 每轮的位移量
     private let shifts: [UInt32] = [7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
@@ -54,24 +55,39 @@ public final class MD5:AsymmetricType{
     // 散列值（链接变量）此处为计算机读取后的数据
     private let hashes: [UInt32] = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]
     
-    @objc public func encryptSuccess(sourceString: String) -> String {
-        guard let data = sourceString.data(using: .utf8) else {
-            return "sourceString 长度不符合"
-        }
-        message = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
-                return [UInt8](bytes)
-        }
-        let MD5Data = calculate()
-    
-        var MD5String = String()
+    @objc public init(){
         
-        for c in MD5Data {
-            MD5String += String(format: "%02x", c)
-        }
-        return MD5String
     }
-    /** oc使用 */
-    @objc public init(){}
+    
+    @objc public func hashString(sourceString: String) -> String {
+        
+        assert(sourceString.count > 0,error_length)
+        
+        let data = sourceString.data(using: .utf8)!
+        /** iOS 13 后系统提供的MD5散列方法*/
+        if #available(iOS 13.0, *) {
+            
+            let md5 = Insecure.MD5()
+            
+            return _hash(hashData: data, hashClass: md5)
+            
+        }
+        /** iOS 13 前实现的散列方法*/
+        else {
+            message = data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+                    return [UInt8](bytes)
+            }
+            let MD5Data = calculate()
+        
+            var MD5String = String()
+            
+            for c in MD5Data {
+                MD5String += String(format: "%02x", c)
+            }
+            return MD5String
+        }
+    }
+    
     /** 循环计算 */
     func calculate() -> [UInt8] {
         // 获取到追加了长度的数据
@@ -96,7 +112,7 @@ public final class MD5:AsymmetricType{
             /// chunk = chunkSequence中data的数组切片
             ///与或运算 （并且将数组切片的数据类型转换为UInt32）
             let M:[UInt32] = toUInt32Array(chunk)
-            assert(M.count == 16, "Invalid array")
+            assert(M.count == 16)
 
             // Initialize hash value for this chunk:
             var A: UInt32 = hh[0]
@@ -159,7 +175,7 @@ public final class MD5:AsymmetricType{
     }
 }
 
-extension MD5{
+extension MD5_USER{
     /** 将UInt8的数组切片进行 与或运算 返回 UInt32 数组*/
     func toUInt32Array(_ slice: ArraySlice<UInt8>) -> [UInt32] {
         // 此处要返回的是UInt32类型的数组，所以获取到 UInt32 的Memory size
@@ -187,10 +203,6 @@ extension MD5{
         return ((value << bits) & 0xFFFFFFFF) | (value >> (32 - bits))
     }
 }
-
-
-
-
 
 
 

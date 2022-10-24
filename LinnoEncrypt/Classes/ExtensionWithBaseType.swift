@@ -17,6 +17,7 @@ extension Int {
     }
 
 }
+
 func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     let totalBytes = length ?? (MemoryLayout<T>.size * 8)
 
@@ -35,4 +36,46 @@ func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     valuePointer.deallocate()
 
     return bytes
+    
 }
+/** string 扩展 base64 编解码属性*/
+extension String{
+    var base64Encoded:String{
+        let data = self.data(using: .utf8) ?? Data()
+        return data.base64EncodedString(options: .lineLength64Characters)
+    }
+    var base64Dcoded:String{
+        let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) ?? Data()
+        return String(data: data, encoding: .utf8) ?? error_base64_Decoding
+    }
+}
+
+extension Data {
+    /// Data扩展 16进制字符串属性
+    var hexadecimal:String{
+        let bytes = [UInt8](self)
+        var hexString = ""
+        for index in 0..<self.count {
+            let newHex = String(format: "%x", bytes[index]&0xff)
+            if newHex.count == 1 {
+                hexString = String(format: "%@0%@", hexString, newHex)
+            } else {
+                hexString += newHex
+            }
+        }
+        return hexString
+    }
+    /**
+        - Returns: A value that is hexadecimal ,format is [UInt8].
+     */
+    func bytes() -> [UInt8] {
+        let string = self.hexadecimal
+        var start = string.startIndex
+        return stride(from: 0, to: string.count, by: 2).compactMap { _ in
+            let end = string.index(after: start)
+            defer {start = string.index(after: end)}
+            return UInt8(string[start...end], radix: 16)
+        }
+    }
+}
+

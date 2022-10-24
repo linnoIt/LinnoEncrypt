@@ -26,7 +26,7 @@ public final class AES: SymmetricEncryptDecryptProducer {
     private override init() {
         super.init()
     }
-
+    /** change keysize */
     public func replecekeySize(size:AESkeySize) {
         keySize = size
     }
@@ -34,7 +34,7 @@ public final class AES: SymmetricEncryptDecryptProducer {
        return _AESEncryptOrDecrypt(op: stateOp(kState: kState), data: data, key:testKey)
     }
     /**
-     AES的加密过程 和 解密过程
+        AES的加密过程 和 解密过程
      */
     private  func _AESEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> String{
         var ccKeySize:Int

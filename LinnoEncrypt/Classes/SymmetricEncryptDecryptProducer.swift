@@ -11,18 +11,22 @@ import CommonCrypto
 public class SymmetricEncryptDecryptProducer: SymmetricEncryptionBase {
 
     var testKey = "123456"
-    /// kState 默认为加密
-    public override func encryptDecryptSuccess(sourceString: String, kState: kEncryptDecrypt = .kEncrypt) -> String {
-        guard sourceString.count > 0  else{
-            return "sourceSting is empty"
-        }
-        return runEncryptDecry(data: stringData(sourceString: sourceString, kState: kState), kState: kState)
+    /** 加密 */
+    public override func encrypt(_ sourceString: String) -> String {
+        assert(sourceString.count > 0,error_length)
+        return runEncryptDecry(data: stringData(sourceString: sourceString, kState: .kEncrypt), kState: .kEncrypt)
     }
+    /** 解密 */
+    public override func decrypt(_ sourceString: String) -> String {
+        assert(sourceString.count > 0,error_length)
+        return runEncryptDecry(data: stringData(sourceString: sourceString, kState: .kDecrypt), kState: .kDecrypt)
+    }
+    /** 修改加密的key */
     public func replacekey(key:String){
         testKey = key
     }
     func runEncryptDecry(data:Data, kState: kEncryptDecrypt) -> String{
-        return "error"
+        encryptAbstractMethod()
     }
 }
 extension SymmetricEncryptDecryptProducer{
@@ -44,7 +48,6 @@ extension SymmetricEncryptDecryptProducer{
             newString = String(oldString.prefix(keyCount))
         }else{
             newString = oldString.appendingFormat(String(format: "%%0%lud", keyCount - oldString.count) ,0)
-           
         }
         return newString
     }
@@ -76,14 +79,14 @@ extension SymmetricEncryptDecryptProducer{
         
         let resData = Data.init(bytes: bufferPtr!, count: movedBytes)
         var resString:String
-        
+        assert(res == kCCSuccess,"\(error_encrypt_decrypt)\(res)")
         guard res == kCCSuccess else {
-            return "EncryptOrDecrypt Error code = \(res)"
+            return "\(error_encrypt_decrypt)\(res)"
         }
         if op == 0 {
             resString  = resData.base64EncodedString(options: .lineLength64Characters)
         }else{
-            resString = String(data: resData, encoding: .utf8) ?? "Decrypt Error"
+            resString = String(data: resData, encoding: .utf8) ?? error_base64_Decoding
         }
         free(bufferPtr)
         return resString

@@ -11,6 +11,8 @@ public enum kEncryptDecrypt {
     case kEncrypt
     case kDecrypt
 }
-protocol SymmetricType {
-    func encryptDecryptSuccess(sourceString:String,kState:kEncryptDecrypt) -> String
+protocol EncryptDecryptType {
+    func encrypt(_ sourceString:String) -> String
+    
+    func decrypt(_ sourceString:String) -> String
 }
