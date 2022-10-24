@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-
-/**默认从钥匙串中获取密钥 */
 public struct RSA: AsymmetricType{
     
     public enum RSAKeySize: Int {
