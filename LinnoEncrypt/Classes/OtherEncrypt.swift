@@ -47,11 +47,11 @@ public final class otherEncry: SymmetricEncryptDecryptProducer {
     private override init() {
         super.init()
     }
-    override func runEncryptDecry(data: Data, kState: kEncryptDecrypt) -> String {
+    override func runEncryptDecry(data: Data, kState: kEncryptDecrypt) -> Data {
        return _OtherEncryptOrDecrypt(op: stateOp(kState: kState), data: data, key:testKey)
     }
     
-    private  func _OtherEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> String{
+    private  func _OtherEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> Data{
         let ccKeySize = keyLengthKeySize(wayOfEncryption: encryption ?? .CAST, keyLength: keySize ?? .maxSize)
         let usekey = getBitKey(oldString: key, keyCount: ccKeySize)
         let alg_blockSize = encryptionAlgorithm(wayOfEncryption: encryption!)

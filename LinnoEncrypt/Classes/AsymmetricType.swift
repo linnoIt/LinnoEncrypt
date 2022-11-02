@@ -12,10 +12,17 @@ import Foundation
 /** 扩展协议 的方法去做*/
 protocol AsymmetricType:EncryptDecryptType {
     
-    var identifierString: String { get  }
+    var identifierString: String { get  set}
+    
 }
 
 extension AsymmetricType{
+    
+    var identifierString: String {
+       get { return "" }
+       set { /* default set do nothing */ }
+    }
+    
     /**
      保存密钥到钥匙串
      - Parameters:
@@ -25,6 +32,10 @@ extension AsymmetricType{
         SecItemDelete(query as CFDictionary)
         let status = SecItemAdd(query as CFDictionary, nil)
         assert(status == errSecSuccess, error_save_keychain)
+        guard status == errSecSuccess else {
+            errorTips(tips: error_save_keychain)
+            return
+        }
     }
     /**
      创建私钥和公钥
@@ -39,8 +50,10 @@ extension AsymmetricType{
         // 创建 privateSecKey
         var error: Unmanaged<CFError>?
         guard let privateKey = SecKeyCreateRandomKey(parameters as CFDictionary, &error) else {
+            let tipsString = "\(error_create_privateKey) \(String(describing: error))"
             _ = error!.takeRetainedValue() as Error
-            assert((error != nil), "\(error_create_privateKey) \(String(describing: error))")
+            assert((error != nil), tipsString)
+            errorTips(tips: tipsString)
             return nil
         }
         let publicKey = SecKeyCopyPublicKey(privateKey)
@@ -68,10 +81,12 @@ extension AsymmetricType{
         var result: CFTypeRef?
         let status = SecItemAdd(attributes as CFDictionary, &result)
 
-        if status == errSecSuccess {
-            data = result as? Data
-            SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess else {
+            errorTips(tips: error_save_keychain)
+            return Data()
         }
+        data = result as? Data
+        SecItemDelete(query as CFDictionary)
         return data!
     }
     
@@ -104,7 +119,9 @@ extension AsymmetricType{
         var error: Unmanaged<CFError>?
         guard let secKey = SecKeyCreateWithData(data! as CFData, parameters as CFDictionary, &error) else {
             _ = error!.takeRetainedValue() as Error
-            assert((error != nil), "\(error_string_get_secKey) \(String(describing: error))")
+            let tipsString = "\(error_string_get_secKey) \(String(describing: error))"
+            assert((error != nil), tipsString)
+            errorTips(tips: tipsString)
             return nil
         }
         return secKey
@@ -123,6 +140,7 @@ extension AsymmetricType{
             let result = key as! SecKey
             return result
         }
+        errorTips(tips: error_get_keychain)
         return nil
     }
     /**
@@ -136,10 +154,12 @@ extension AsymmetricType{
         do {
             data = try Data.init(contentsOf: URL.init(fileURLWithPath: path))
         } catch {
+            errorTips(tips: error_certificates_path)
             return nil
         }
         
         guard let cert = SecCertificateCreateWithData(nil, data as CFData) else {
+            errorTips(tips: error_der_notCoding)
             return nil
         }
         let key: SecKey?
@@ -154,6 +174,7 @@ extension AsymmetricType{
                 }
             }
         }
+        errorTips(tips: error_public_secKey_null)
         return nil
     }
     
@@ -169,6 +190,7 @@ extension AsymmetricType{
         do {
             data = try Data.init(contentsOf: URL.init(fileURLWithPath: path))
         } catch {
+            errorTips(tips: error_certificates_path)
             return nil
         }
         
@@ -186,6 +208,7 @@ extension AsymmetricType{
                 return key
             }
         }
+        errorTips(tips: error_private_secKey_null)
         return nil
     }
 }

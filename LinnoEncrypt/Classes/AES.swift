@@ -30,13 +30,13 @@ public final class AES: SymmetricEncryptDecryptProducer {
     public func replecekeySize(size:AESkeySize) {
         keySize = size
     }
-    override func runEncryptDecry(data: Data, kState: kEncryptDecrypt) -> String {
+    override func runEncryptDecry(data: Data, kState: kEncryptDecrypt) -> Data {
        return _AESEncryptOrDecrypt(op: stateOp(kState: kState), data: data, key:testKey)
     }
     /**
         AES的加密过程 和 解密过程
      */
-    private  func _AESEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> String{
+    private  func _AESEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> Data{
         var ccKeySize:Int
         var alg:Int = kCCAlgorithmAES
         switch keySize {

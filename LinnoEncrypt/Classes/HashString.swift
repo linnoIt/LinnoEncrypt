@@ -54,10 +54,9 @@ public extension HashStruct where Base == String {
     var sha512:String{
         Sha.init().hashString(sourceString: base, value: .hash512)
     }
+    /**HashStruct 扩展属性HMAC方法  */
+    func hmac(key:String,type:H_MAC.H_MAC_hashType) -> String{
+        return H_MAC(key: key,type: type).hashString(sourceString: base)
+    }
 }
-func encryptAbstractMethod(file: StaticString = #file, line: UInt = #line) -> Swift.Never {
-    encryptFatalError(error_abstract_method, file: file, line: line)
-}
-func encryptFatalError(_ lastMessage: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) -> Swift.Never  {
-    fatalError(lastMessage(), file: file, line: line)
-}
+

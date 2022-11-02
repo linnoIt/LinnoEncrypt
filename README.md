@@ -15,11 +15,11 @@ Symmetric Encrypt & Asymmetric Decrypt
 
 Symmetric support:
 
-    AES DES 3DES CAST RC4 RC2 Blowfish
+    AES DES 3DES CAST RC4 RC2 Blowfish ChaCha20
 
 hash support:
 
-    md5 sha1 sha256 sha384 sha512
+    md5 sha1 sha256 sha384 sha512 HMAC
 
 Asymmetric support:
 

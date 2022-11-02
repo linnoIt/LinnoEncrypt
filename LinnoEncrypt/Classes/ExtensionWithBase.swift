@@ -8,6 +8,13 @@
 import Foundation
 
 
+func encryptAbstractMethod(file: StaticString = #file, line: UInt = #line) -> Swift.Never {
+    encryptFatalError(error_abstract_method, file: file, line: line)
+}
+func encryptFatalError(_ lastMessage: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) -> Swift.Never  {
+    fatalError(lastMessage(), file: file, line: line)
+}
+
 extension Int {
     // 在小端上：将数字以256进制实现数组，数组从右到左实现
     // eg: num = 255 -> [0, 0, 0, 0, 0, 0, 0, 255]
@@ -15,7 +22,6 @@ extension Int {
     func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
         return arrayOfBytes(self, length: totalBytes)
     }
-
 }
 
 func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
@@ -65,17 +71,46 @@ extension Data {
         }
         return hexString
     }
-    /**
-        - Returns: A value that is hexadecimal ,format is [UInt8].
-     */
-    func bytes() -> [UInt8] {
-        let string = self.hexadecimal
-        var start = string.startIndex
-        return stride(from: 0, to: string.count, by: 2).compactMap { _ in
-            let end = string.index(after: start)
-            defer {start = string.index(after: end)}
-            return UInt8(string[start...end], radix: 16)
+}
+
+
+func _getContainerFromJSONString(json:String) throws -> Any {
+    let jsonData:Data = json.data(using: .utf8)!
+    let container =  try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+    return container
+}
+/**JSONString转换为数组**/
+func getArrayFromJSONString(jsonString:String) -> Array<Any>? {
+    if let array = try? _getContainerFromJSONString(json: jsonString){
+        return array  as? Array<Any>
+    }
+    return nil
+}
+/**JSONString转换为字典**/
+func getDictionaryFromJSONString(jsonString:String) -> Dictionary<String, Any>? {
+    if let dic = try? _getContainerFromJSONString(json: jsonString){
+        return dic  as? Dictionary<String, Any>
+    }
+    return nil
+}
+/**转json字符串**/
+func getJSONStringFromAny(obj:Any) -> String? {
+    guard JSONSerialization.isValidJSONObject(obj) else {
+        errorTips(tips: tips_not_converted_JSON)
+        return nil
+    }
+    if let data = try? JSONSerialization.data(withJSONObject: obj){
+        if let res = String(data: data, encoding: .utf8){
+            return res
         }
     }
+    return nil
 }
+
+
+
+
+
+
+
 

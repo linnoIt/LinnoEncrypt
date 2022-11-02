@@ -15,6 +15,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		9770BE4B08347F1F70972981 /* Pods_LinnoEncrypt_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D47F9C738FB73935694C00 /* Pods_LinnoEncrypt_Tests.framework */; };
+		9F4B5CCB2912389700754498 /* hashTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B5CCA2912389700754498 /* hashTest.swift */; };
+		9F4B5CCD291238BA00754498 /* AsymmetricTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B5CCC291238BA00754498 /* AsymmetricTest.swift */; };
+		9F4B5CCF291238D100754498 /* SymmetricTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B5CCE291238D100754498 /* SymmetricTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +48,11 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7E9E5C5A5FC82ADFC5F7298B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		97567D979458E30F0EA83058 /* Pods-LinnoEncrypt_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinnoEncrypt_Example.debug.xcconfig"; path = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		9F4B5CCA2912389700754498 /* hashTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hashTest.swift; sourceTree = "<group>"; };
+		9F4B5CCC291238BA00754498 /* AsymmetricTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsymmetricTest.swift; sourceTree = "<group>"; };
+		9F4B5CCE291238D100754498 /* SymmetricTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymmetricTest.swift; sourceTree = "<group>"; };
 		A3464ED88C9F7F281191B5C9 /* Pods-LinnoEncrypt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinnoEncrypt_Example.release.xcconfig"; path = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example.release.xcconfig"; sourceTree = "<group>"; };
-		B8E484A43A320B5F3B73BCA5 /* LinnoEncrypt.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LinnoEncrypt.podspec; path = ../LinnoEncrypt.podspec; sourceTree = "<group>"; };
+		B8E484A43A320B5F3B73BCA5 /* LinnoEncrypt.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LinnoEncrypt.podspec; path = ../LinnoEncrypt.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				9F4B5CCA2912389700754498 /* hashTest.swift */,
+				9F4B5CCC291238BA00754498 /* AsymmetricTest.swift */,
+				9F4B5CCE291238D100754498 /* SymmetricTest.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -342,7 +351,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4B5CCD291238BA00754498 /* AsymmetricTest.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				9F4B5CCB2912389700754498 /* hashTest.swift in Sources */,
+				9F4B5CCF291238D100754498 /* SymmetricTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

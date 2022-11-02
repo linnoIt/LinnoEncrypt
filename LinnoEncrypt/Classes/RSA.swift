@@ -8,6 +8,8 @@
 import Foundation
 
 public struct RSA: AsymmetricType{
+
+
     
     public enum RSAKeySize: Int {
         case size512 = 512
@@ -181,29 +183,55 @@ public struct RSA: AsymmetricType{
         saveDictionary[kSecAttrApplicationLabel as String] = isPrivate ? privateKeyIdentifier : publicKeyIdentifier
         saveKeyToKeychain(query: saveDictionary)
     }
+    
+    private func _encrypt(source:Data) ->Data?{
+        guard !source.isEmpty && self.publicSecKey != nil else {
+            if source.count > 0 {
+                errorTips(tips: error_public_secKey_null)
+                return nil
+            }
+            errorTips(tips: error_length)
+            return nil
+        }
+        var error: Unmanaged<CFError>?
+        let resData = SecKeyCreateEncryptedData(self.publicSecKey!, rsaAlgorithm, source as CFData, &error) as Data?
+        guard error == nil else {
+            errorTips(tips: "\(error_rsa_encrypt) \(String(describing: error))")
+            return nil
+        }
+        return  resData
+    }
+    private func _decrypt(source:Data) ->Data?{
+        guard !source.isEmpty && self.privateSecKey != nil else {
+            if source.count > 0 {
+                errorTips(tips: error_private_secKey_null)
+                return nil
+            }
+            errorTips(tips: error_length)
+            return nil
+        }
+        var error: Unmanaged<CFError>?
+        let resData =  SecKeyCreateDecryptedData(self.privateSecKey!, rsaAlgorithm, source as CFData, &error) as Data?
+        guard error == nil else {
+            errorTips(tips: "\(error_rsa_encrypt) \(String(describing: error))")
+            return nil
+        }
+        return resData
+    }
 }
 
 extension RSA{
-    public func encrypt(_ source: String) -> String {
-        guard !source.isEmpty && self.publicSecKey != nil else {
-            assert(source.count > 0,error_length)
-            assert(self.publicSecKey != nil,error_publicSecKey_null)
-            return source
+    public func encrypt(_ sourceData: Data) -> Data {
+        if let data = _encrypt(source: sourceData){
+            return data
         }
-        let data = source.data(using: String.Encoding.utf8)!
-        var error: Unmanaged<CFError>?
-        let resData = SecKeyCreateEncryptedData(self.publicSecKey!, rsaAlgorithm, data as CFData, &error) as Data?
-        return  resData!.base64EncodedString(options: .lineLength64Characters)
+        return Data()
     }
-    public func decrypt(_ source: String) -> String {
-        guard !source.isEmpty && self.privateSecKey != nil else {
-            assert(source.count > 0,error_length)
-            assert(self.privateSecKey != nil,error_privateSecKey_null)
-            return source
+    
+    public func decrypt(_ sourceData: Data) -> Data {
+        if let data = _decrypt(source: sourceData){
+            return data
         }
-        let data = Data(base64Encoded: source, options: .ignoreUnknownCharacters)
-        var error: Unmanaged<CFError>?
-        let resData =  SecKeyCreateDecryptedData(self.privateSecKey!, rsaAlgorithm, data! as CFData, &error) as Data?
-        return String(data: resData!, encoding: String.Encoding.utf8)!
+        return Data()
     }
 }

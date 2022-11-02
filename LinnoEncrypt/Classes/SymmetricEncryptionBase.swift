@@ -8,11 +8,12 @@
 import Foundation
 
 public class SymmetricEncryptionBase: NSObject,EncryptDecryptType {
-    
-    public func encrypt(_ sourceString:String) -> String{
+
+    public func encrypt(_ sourceData: Data) -> Data {
         encryptAbstractMethod()
     }
-    public func decrypt(_ sourceString:String) -> String{
+    
+    public func decrypt(_ sourceString: Data) -> Data {
         encryptAbstractMethod()
     }
 }

@@ -28,10 +28,9 @@ struct Sha:HashType{
     typealias cc_type = (UnsafeRawPointer?, CC_LONG,  UnsafeMutablePointer<UInt8>?) -> UnsafeMutablePointer<UInt8>?
     /**带有选择散列类型的的散列方法 */
     public func hashString(sourceString: String, value:hashValue) -> String {
-        
         assert(sourceString.count > 0,error_length)
-        
         guard sourceString.count > 0 else {
+            errorTips(tips: error_length)
            return error_length
         }
         let hashData = sourceString.data(using: .utf8)!

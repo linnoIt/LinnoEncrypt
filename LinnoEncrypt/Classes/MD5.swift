@@ -60,9 +60,10 @@ public final class MD5_USER:HashType{
     }
     
     @objc public func hashString(sourceString: String) -> String {
-        
-        assert(sourceString.count > 0,error_length)
-        
+        guard sourceString.count > 0 else {
+            errorTips(tips: error_length)
+           return error_length
+        }
         let data = sourceString.data(using: .utf8)!
         /** iOS 13 后系统提供的MD5散列方法*/
         if #available(iOS 13.0, *) {
@@ -113,7 +114,10 @@ public final class MD5_USER:HashType{
             ///与或运算 （并且将数组切片的数据类型转换为UInt32）
             let M:[UInt32] = toUInt32Array(chunk)
             assert(M.count == 16)
-
+            guard M.count == 16 else {
+                errorTips(tips: "Error converting data to UInt32 array")
+                return []
+            }
             // Initialize hash value for this chunk:
             var A: UInt32 = hh[0]
             var B: UInt32 = hh[1]
