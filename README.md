@@ -15,7 +15,7 @@ Symmetric Encrypt & Asymmetric Decrypt
 
 Symmetric support:
 
-    AES DES 3DES CAST RC4 RC2 Blowfish ChaCha20
+    AES DES 3DES CAST RC4 RC2 Blowfish ChaCha20 AES_GCM(ios13.0)
 
 hash support:
 
@@ -24,6 +24,17 @@ hash support:
 Asymmetric support:
 
     RSA
+
+objective support:
+
+    OCSupportShortcut_Hash
+    OCSupportShortcut_RSA
+    OCSupportShortcut_Symmetric
+  
+generate key:
+
+    Curve_25519
+
 
 ## Installation
 

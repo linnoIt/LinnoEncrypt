@@ -1,60 +1,56 @@
 //
 //  RSA.swift
-//  QR
 //
 //  Created by 韩增超 on 2022/10/18.
 //
-
-import Foundation
-
-public struct RSA: AsymmetricType{
-
-
-    
+public struct RSA : AsymmetricType {
+    // bits
     public enum RSAKeySize: Int {
-        case size512 = 512
-        case size768 = 768
-        case size1024 = 1024
-        case size2048 = 2048
+        case size512 = 512   // 64 byte
+        case size1024 = 1024 // 128 byte
+        case size2048 = 2048 // 265 byte
+        case size4096 = 4096 // 512 byte
     }
-    
-    var rsaAlgorithm:SecKeyAlgorithm = .rsaEncryptionPKCS1
-    
+    // During encryption, you need to mix the data with the key, which has a fixed length of 11 bytes
+    private let keyLength = 11
+    // Encryption mode: Encryption mode provided by the system
+    var rsaAlgorithm: SecKeyAlgorithm = .rsaEncryptionPKCS1
+    // Create a private key and a public key
     var identifierString: String = "RSATest"
-    
+    // The encryption key setting requires the encryption size
     var keySize: RSAKeySize = .size1024
-    
+    // private key
     var privateSecKey: SecKey?
-    
+    // public key
     var publicSecKey: SecKey?
-    
+    // private key identifier
     private var privateKeyIdentifier: String?
-    
+    // public key identifier
     private var publicKeyIdentifier: String?
-    
+    // private key identifier data
     private var privateKeyTag: Data?
-    
+    // public key identifier data
     private var publicKeyTag: Data?
     
     /**
      - Parameters:
         - identifierString: if you need create privateKey & publicKey ||  you get key with string , save to keychain ，identifierString is the identity in keychain
-        - keySize: key size , it's enum
-        - algorithm: key type
+        - keySize: key size , it's enum, key size, The length of encrypted data is affected
+        - algorithm: system algorithm
         - default：identifierString = "RSATest", keySize = .size1024, algorithm .rsaEncryptionPKCS1
      */
-   public init(identifierString: String = "RSATest", keySize:RSAKeySize = .size1024, algorithm:SecKeyAlgorithm = .rsaEncryptionPKCS1) {
+   public init(identifierString: String = "RSATest", keySize: RSAKeySize = .size1024, algorithm: SecKeyAlgorithm = .rsaEncryptionPKCS1) {
         self.identifierString = identifierString
         self.keySize = keySize
         self.rsaAlgorithm = algorithm
         _setAttribute()
     }
     /** create privateKey & publicKey , save to keychain */
-    public mutating func generateRSAKeyPair(){
+    public mutating func generateRSAKeyPair() {
         guard publicSecKey == nil else {
             return
         }
-        if publicKeyTag == nil{
+        if publicKeyTag == nil {
             _setAttribute()
         }
         let keyTuple = generateKeyPair(keySize: keySize.rawValue, keyType: kSecAttrKeyTypeRSA)
@@ -72,7 +68,7 @@ public struct RSA: AsymmetricType{
         - password: p12 certificate password
         - default： get with keychain
      */
-    public mutating func setPrivateSecKey(keyString:String? = nil, P12Path:String? = nil, P12Password:String? = ""){
+    public mutating func setPrivateSecKey(keyString: String? = nil, P12Path: String? = nil, P12Password: String? = "") {
         guard keyString == nil else {
             privateSecKey = _addKeyWithString(keyString!,kSecAttrKeyClassPrivate)
             return
@@ -90,7 +86,7 @@ public struct RSA: AsymmetricType{
         - DERPath: get with DER certificate path
         - default：get with keychain
      */
-    public mutating func setPublicSecKey(keyString:String? = nil, DERPath:String? = nil){
+    public mutating func setPublicSecKey(keyString: String? = nil, DERPath: String? = nil) {
         guard keyString == nil else {
             publicSecKey = _addKeyWithString(keyString!,kSecAttrKeyClassPublic)
             return
@@ -101,21 +97,15 @@ public struct RSA: AsymmetricType{
         }
         publicSecKey = _getRSAKeyFromKeychain(isPrivate: kSecAttrKeyClassPublic, keySize: keySize.rawValue, ApplicationTag: publicKeyTag!, ApplicationLabel: publicKeyIdentifier!)
     }
-    /** set privateKey & publicKey , default get with keychain */
-    public  mutating func setRSAKey(){
-        _setAttribute()
-        setPublicSecKey()
-        setPrivateSecKey()
-    }
     /** If publicKey exists , get public key to string */
-    public func publicKeyString() -> String?{
+    public func publicKeyString() -> String? {
         guard publicSecKey != nil else {
             return nil
         }
         return _secKeyToString(publicSecKey!)
     }
     /** If privateKey exists , get private key to string */
-    public func privateKeyString() -> String?{
+    public func privateKeyString() -> String? {
         guard privateSecKey != nil else {
             return nil
         }
@@ -126,32 +116,31 @@ public struct RSA: AsymmetricType{
         - key: secret key
      - returns: string with secret key
      */
-    public func secKeyToString(_ key:SecKey) -> String? {
+    public func secKeyToString(_ key: SecKey) -> String? {
         return _secKeyToString(key)
     }
     
-    private mutating func _setAttribute(){
+    private func _secKeyToString(_ key: SecKey) -> String? {
+        var error:Unmanaged<CFError>?
+        if let cfdata = SecKeyCopyExternalRepresentation(key, &error) {
+           let data:Data = cfdata as Data
+           let b64Key = data.base64EncodedString()
+           return b64Key
+        }
+        return nil
+    }
+    private mutating func _setAttribute() {
         privateKeyIdentifier = identifierString.appending(".privateKey")
         publicKeyIdentifier = identifierString.appending(".publicKey")
         privateKeyTag = privateKeyIdentifier!.data(using: .utf8)!
         publicKeyTag = publicKeyIdentifier!.data(using: .utf8)!
     }
-    
-    private func _secKeyToString(_ key:SecKey) -> String? {
-        var error:Unmanaged<CFError>?
-        if let cfdata = SecKeyCopyExternalRepresentation(key, &error) {
-           let data:Data = cfdata as Data
-           let b64Key = data.base64EncodedString()
-            return b64Key
-        }
-        return nil
+    /** Get the public and private keys from the key string */
+    private func _addKeyWithString(_ string: String, _ keyClass: CFString) -> SecKey? {
+       return getKeyWithString(string, kSecAttrKeyTypeRSA, keySize.rawValue, keyClass)
     }
-    /** 根据密钥字符串获取获取公钥和私钥*/
-    private func _addKeyWithString(_ string:String, _ keyClass: CFString) -> SecKey? {
-       return getKeyWithWithString(string, kSecAttrKeyTypeRSA, keySize.rawValue, keyClass)
-    }
-    /** 根据identifierString从钥匙串中获取公钥和私钥*/
-    private func _getRSAKeyFromKeychain(isPrivate:CFString, keySize: size_t, ApplicationTag:Data, ApplicationLabel: String) -> SecKey? {
+    /** This parameter is required when obtaining the public and private keys from the key string*/
+    private func _getRSAKeyFromKeychain(isPrivate: CFString, keySize: size_t, ApplicationTag: Data, ApplicationLabel:  String) -> SecKey? {
         var queryDictionary = [String: Any]()
         queryDictionary[kSecClass as String] = kSecClassKey
         queryDictionary[kSecAttrKeyType as String] = kSecAttrKeyTypeRSA
@@ -162,7 +151,7 @@ public struct RSA: AsymmetricType{
         queryDictionary[kSecAttrKeySizeInBits as String] = keySize
         return getKeyWithKeychain(query: queryDictionary)
     }
-    /** 保存 公钥和私钥的值*/
+    /** Set the parameters required to save the public and private keys*/
     private func _saveRSAKeyToKeychain(key: SecKey, keySize: size_t, isPrivate: Bool) {
         var saveDictionary = [String: Any]()
         let keyClass = isPrivate ? kSecAttrKeyClassPrivate : kSecAttrKeyClassPublic
@@ -183,9 +172,13 @@ public struct RSA: AsymmetricType{
         saveDictionary[kSecAttrApplicationLabel as String] = isPrivate ? privateKeyIdentifier : publicKeyIdentifier
         saveKeyToKeychain(query: saveDictionary)
     }
-    
-    private func _encrypt(source:Data) ->Data?{
-        guard !source.isEmpty && self.publicSecKey != nil else {
+}
+
+/** encrypt Decrypt*/
+extension RSA {
+    /** Process the original data before encryption and decryption*/
+    private func _encryptDecryptPrepare(source: Data, key: SecKey?, defaultLength: Int) -> [Data]? {
+        guard !source.isEmpty && key != nil else {
             if source.count > 0 {
                 errorTips(tips: error_public_secKey_null)
                 return nil
@@ -193,34 +186,63 @@ public struct RSA: AsymmetricType{
             errorTips(tips: error_length)
             return nil
         }
+        guard source.count > defaultLength else {
+            return [source]
+        }
+        let sourceBytes = [UInt8](source)
+        var sources:Array<Data> = []
+        let res = dealListToNumSubList(list: sourceBytes, num: defaultLength)
+        for itemData in res {
+            sources.append(Data(bytes: itemData, count: itemData.count))
+        }
+        return sources
+    }
+     
+    typealias ED_Func = (SecKey, SecKeyAlgorithm, CFData, UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
+    
+    /** Methods of encryption and decryption */
+    private func _encryptedDecryptedData(_ key: SecKey, _ algorithm: SecKeyAlgorithm, _ plaintext: CFData, _ edFunc:ED_Func) -> Data? {
         var error: Unmanaged<CFError>?
-        let resData = SecKeyCreateEncryptedData(self.publicSecKey!, rsaAlgorithm, source as CFData, &error) as Data?
+        let resData = edFunc(key, algorithm, plaintext, &error) as Data?
         guard error == nil else {
             errorTips(tips: "\(error_rsa_encrypt) \(String(describing: error))")
             return nil
         }
         return  resData
     }
-    private func _decrypt(source:Data) ->Data?{
-        guard !source.isEmpty && self.privateSecKey != nil else {
-            if source.count > 0 {
-                errorTips(tips: error_private_secKey_null)
-                return nil
+    private func _encryptDecrypt(datas: [Data], key: SecKey, alg: SecKeyAlgorithm, edFunc: ED_Func) -> Data? {
+        guard datas.count > 0 else {
+            return nil
+        }
+        if datas.count == 1 {
+            return _encryptedDecryptedData(key, alg, datas.first! as CFData, edFunc)
+        }
+        var res:Data = Data()
+        for sourceData in datas {
+            if let encryptedData = _encryptedDecryptedData(key, alg, sourceData as CFData, edFunc) {
+                let bytes = [UInt8] (encryptedData)
+                res.append(bytes, count:bytes.count)
             }
-            errorTips(tips: error_length)
-            return nil
         }
-        var error: Unmanaged<CFError>?
-        let resData =  SecKeyCreateDecryptedData(self.privateSecKey!, rsaAlgorithm, source as CFData, &error) as Data?
-        guard error == nil else {
-            errorTips(tips: "\(error_rsa_encrypt) \(String(describing: error))")
-            return nil
+        return res
+    }
+    
+    private func _encrypt(source: Data) -> Data? {
+        if let datas = _encryptDecryptPrepare(source: source, key: self.publicSecKey, defaultLength: keySize .rawValue / 8 - keyLength){
+            return _encryptDecrypt(datas: datas, key:  self.publicSecKey!, alg: rsaAlgorithm, edFunc: SecKeyCreateEncryptedData)
         }
-        return resData
+        return nil
+    }
+    private func _decrypt(source: Data) -> Data? {
+        if let datas = _encryptDecryptPrepare(source: source, key: self.privateSecKey, defaultLength: keySize.rawValue / 8) {
+            return _encryptDecrypt(datas: datas, key:  self.privateSecKey!, alg: rsaAlgorithm, edFunc: SecKeyCreateDecryptedData)
+        }
+       return nil
     }
 }
 
-extension RSA{
+/** EncryptDecryptType protocol method */
+extension RSA {
     public func encrypt(_ sourceData: Data) -> Data {
         if let data = _encrypt(source: sourceData){
             return data

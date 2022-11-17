@@ -5,8 +5,6 @@
 //  Created by 韩增超 on 2022/10/9.
 //
 
-import Foundation
-
 // MARK: 测试 使用协议写法（参考Kingfisher的写法）
 /** HashStruct结构，结构体内的类型为Base*/
 public struct HashStruct<Base> {
@@ -39,23 +37,23 @@ public extension HashStruct where Base == String {
         return  MD5_USER.init().hashString(sourceString: base)
     }
     /**HashStruct 扩展属性sha1    ⚠️⚠️⚠️不安全的 散列方式，不建议使用 */
-    var sha1:String{
-        Sha.init().hashString(sourceString: base, value: .hash1)
+    var sha1: String {
+        Sha.init().hashString(sourceString: base, hashType: .hash1)
     }
     /**HashStruct 扩展属性sha256  */
-    var sha256:String{
-        Sha.init().hashString(sourceString: base, value: .hash256)
+    var sha256: String {
+        Sha.init().hashString(sourceString: base, hashType: .hash256)
     }
     /**HashStruct 扩展属性hash384  */
-    var sha384:String{
-        Sha.init().hashString(sourceString: base, value: .hash384)
+    var sha384: String {
+        Sha.init().hashString(sourceString: base, hashType: .hash384)
     }
     /**HashStruct 扩展属性hash512  */
-    var sha512:String{
-        Sha.init().hashString(sourceString: base, value: .hash512)
+    var sha512: String {
+        Sha.init().hashString(sourceString: base, hashType: .hash512)
     }
     /**HashStruct 扩展属性HMAC方法  */
-    func hmac(key:String,type:H_MAC.H_MAC_hashType) -> String{
+    func hmac(key: String,type: H_MAC.H_MAC_hashType) -> String {
         return H_MAC(key: key,type: type).hashString(sourceString: base)
     }
 }

@@ -5,17 +5,15 @@
 //  Created by 韩增超 on 2022/10/14.
 //
 
-import Foundation
 import CryptoKit
-
 /**散列协议*/
 protocol HashType {
     // 需要散列的数据转换为原始信息message的UInt8数组
-    var message: [UInt8] {set get}
+    var message: [UInt8] { set get }
     /** 追加1和0的计算 */
     func prepare(_ len: Int) -> [UInt8]
     /** 散列方法*/
-    func hashString(sourceString:String) -> String
+    func hashString(sourceString: String) -> String
 }
 
 /** 散列协议扩展*/
@@ -47,7 +45,7 @@ extension HashType {
     
     @available(iOS 13.0, *)
     /** iOS  13.0 以后提供hash方法，MD5 、sha1、sha256、sha384、sha512*/
-    func _hash<T:HashFunction>(hashData:Data ,hashClass:T) -> String {
+    func _hash<T:HashFunction>(hashData: Data ,hashClass: T) -> String {
         var hash =  hashClass
         hash.update(data:hashData)
         let digestString:String = hash.finalize().description

@@ -22,7 +22,7 @@ final class AsymmetricTest: XCTestCase {
     func testExample() throws {
         var rsa = RSA()
 
-        let testString = "this is test string"
+        let testString = "MIGJAoGBANAKZDDzxuOxzNZVGVoZH+rgG2/57OXNXdxCYRD5s7ycWMlnScqaiSpVpElCUeCfqthddn0Auae1GtEkbTfxEpWIf"
         
 //        // 第一种 自己本地创建
 //        rsa.generateRSAKeyPair()
@@ -46,20 +46,22 @@ final class AsymmetricTest: XCTestCase {
         
         // 加密array
         let array = [1, 2, 3, 4, 5]
-        let rsaEnArray = rsa.encrypt(sourceArray: array)
-        print("*************************")
-        if let rsaEdArray:Array<Any> = rsa.decrypt(sourceString: rsaEnArray){
-            print("source = \(rsaEdArray)")
+        if let rsaEnArray = rsa.encrypt(sourceArray: array) {
+            print("*************************")
+            if let rsaEdArray:Array<Any> = rsa.decrypt(sourceString: rsaEnArray){
+                print("source = \(rsaEdArray)")
+            }
+           
         }
-       
+
         // 加密Dictionary
         let dic = ["a":1,"b":"1"] as [String : Any]
-        let rsaEnDic = rsa.encrypt(sourceDictionary: dic)
-        print("*************************")
-        if let rsaEdDic:[String : Any] = rsa.decrypt(sourceString: rsaEnDic){
-            print("source = \(rsaEdDic)")
+        if let rsaEnDic = rsa.encrypt(sourceDictionary: dic) {
+            print("*************************")
+            if let rsaEdDic:[String : Any] = rsa.decrypt(sourceString: rsaEnDic){
+                print("source = \(rsaEdDic)")
+            }
         }
-    
         // 获取公钥字符串
         let publicSecKeyString = rsa.publicKeyString()
         print("publicSecKeyString = \(String(describing: publicSecKeyString))")

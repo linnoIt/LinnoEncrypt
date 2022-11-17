@@ -4,31 +4,27 @@
 //
 //  Created by 韩增超 on 2022/10/18.
 //
-
-import Foundation
-
 /// 实现：RSA
 /// 未实现：Elgamal、背包算法、Rabin、D-H、ECC椭圆曲线加密算法。
 /** 扩展协议 的方法去做*/
-protocol AsymmetricType:EncryptDecryptType {
+protocol AsymmetricType : EncryptDecryptType {
     
     var identifierString: String { get  set}
     
 }
 
-extension AsymmetricType{
+extension AsymmetricType {
     
     var identifierString: String {
        get { return "" }
        set { /* default set do nothing */ }
     }
-    
     /**
      保存密钥到钥匙串
      - Parameters:
         - query: 密钥的参数
      */
-    func saveKeyToKeychain(query:Dictionary<String, Any>){
+    func saveKeyToKeychain(query: Dictionary<String, Any>) {
         SecItemDelete(query as CFDictionary)
         let status = SecItemAdd(query as CFDictionary, nil)
         assert(status == errSecSuccess, error_save_keychain)
@@ -44,7 +40,7 @@ extension AsymmetricType{
         - keyType: 密钥的类型
      - returns: 私钥和公钥的元组
      */
-    func generateKeyPair(keySize:size_t, keyType:CFString) -> (SecKey, SecKey)?{
+    func generateKeyPair(keySize: size_t, keyType: CFString) -> (SecKey, SecKey)? {
         let parameters = [kSecAttrKeyType: keyType,
                           kSecAttrKeySizeInBits: keySize] as [CFString : Any]
         // 创建 privateSecKey
@@ -67,7 +63,7 @@ extension AsymmetricType{
         - keyType:  密钥类型
      - returns: 密钥 的data
      */
-    func getKeyDataFrom(secKey: SecKey, tag: Data, keyType:CFString) -> Data {
+    func getKeyDataFrom(secKey: SecKey, tag: Data, keyType: CFString) -> Data {
         var data: Data?
 
         var query = [String: Any]()
@@ -91,7 +87,7 @@ extension AsymmetricType{
     }
     
     /**
-     从字符串获取 密钥
+     将字符串转为Data 从getKeyWithData方法获取 密钥
      - Parameters:
         - string: 密钥的源字符串
         - keyType: 密钥的类型
@@ -99,7 +95,7 @@ extension AsymmetricType{
         - keyClass: 公钥 || 私钥
      - returns: 返回来自字符串的密钥
      */
-    func getKeyWithWithString(_ string:String, _ keyType:CFString, _ keySizeInBits:size_t, _ keyClass: CFString) -> SecKey? {
+    func getKeyWithString(_ string: String, _ keyType: CFString, _ keySizeInBits: size_t, _ keyClass: CFString) -> SecKey? {
         var newKey = string
         let spos = newKey.range(of: "-----BEGIN \(keyType) \(keyClass) KEY-----")
         let epos = newKey.range(of: "-----END \(keyType) \(keyClass) KEY-----")
@@ -111,13 +107,26 @@ extension AsymmetricType{
         newKey = newKey.replacingOccurrences(of: "\t", with: "")
         newKey = newKey.replacingOccurrences(of: " ", with: "")
         
-        let data = Data.init(base64Encoded: newKey, options: .ignoreUnknownCharacters)
-        
+        if let data = Data.init(base64Encoded: newKey, options: .ignoreUnknownCharacters) {
+           return  getKeyWithData(data as CFData, keyType, keySizeInBits, keyClass)
+        }
+        return nil
+    }
+    /**
+     从data获取 密钥
+     - Parameters:
+        - data: 密钥的源data
+        - keyType: 密钥的类型
+        - keySizeInBits: 密钥的大小
+        - keyClass: 公钥 || 私钥
+     - returns: 返回来自data的密钥
+     */
+    func getKeyWithData(_ data: CFData, _ keyType: CFString, _ keySizeInBits: size_t, _ keyClass: CFString) -> SecKey? {
         let parameters = [kSecAttrKeyType: keyType,
                         kSecAttrKeySizeInBits: keySizeInBits,
                         kSecAttrKeyClass : keyClass ] as [CFString : Any]
         var error: Unmanaged<CFError>?
-        guard let secKey = SecKeyCreateWithData(data! as CFData, parameters as CFDictionary, &error) else {
+        guard let secKey = SecKeyCreateWithData(data, parameters as CFDictionary, &error) else {
             _ = error!.takeRetainedValue() as Error
             let tipsString = "\(error_string_get_secKey) \(String(describing: error))"
             assert((error != nil), tipsString)
@@ -125,15 +134,16 @@ extension AsymmetricType{
             return nil
         }
         return secKey
+        
     }
     
-    
-    /** 从钥匙串中获取 密钥
-     - Parameters:
+    /**
+     从钥匙串中获取 密钥
+    - Parameters:
         - query: 获取的参数
      - returns: 返回来自钥匙串的密钥
      */
-    func getKeyWithKeychain(query:Dictionary<String, Any>) -> SecKey?{
+    func getKeyWithKeychain(query: Dictionary<String, Any>) -> SecKey? {
         var key: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &key)
         if status == errSecSuccess {

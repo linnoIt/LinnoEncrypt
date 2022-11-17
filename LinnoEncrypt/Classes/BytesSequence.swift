@@ -4,14 +4,12 @@
 //
 //  Created by 韩增超 on 2022/10/14.
 //
-
-import Foundation
 /**
  IteratorProtocol：一种一次提供一个序列值的类型
  Sequence:一种提供对元素的顺序、迭代访问的类型
  链表
  */
-struct BytesSequenceIterator:Sequence,IteratorProtocol {
+struct BytesSequenceIterator : Sequence, IteratorProtocol {
     // 分割序列块的长度
     let chunkSize: Int
     // 序列块保存的数据

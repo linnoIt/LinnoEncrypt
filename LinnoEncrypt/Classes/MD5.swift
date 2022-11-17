@@ -1,24 +1,16 @@
 //
 //  MD5.swift
-//  QR
 //
 //  Created by 韩增超 on 2022/9/27.
 //
 
-import Foundation
 import CryptoKit
-
-
 /*MD5以512位分组来处理输入的信息，且每一分组又被划分为16个32位子分组，算法的输出由四个32位分组组成，将这四个32位分组级联后将生成一个128位散列值。
  首先需要对信息进行填充，填充方法如下：先填充一个1，之后就是无数个0，直到使其字节长度对512求余数的结果等于448，（n*512) + 448 ,512-448 = 64位是用于表示填充前的信息长度。加上剩下的64位，即（n+1)*512,长度刚刚好是512的整数倍数。
  链接变量进行循环运算，得出结果。MD5中有四个32位被称作链接变量（Chaining Variable）的整数参数，他们分别为：A=0x01234567，B=0x89abcdef，C=0xfedcba98，D=0x76543210（此处为16进制原始数据）。当设置好这四个链接变量后，就开始进入算法的四轮循环运算
  */
-
-
 /// iOS13之前，系统方法不提供MD5实现
-/// 项目需要兼容oc，类继承的 hashString方法来完成转换
-
-public final class MD5_USER:HashType{
+public final class MD5_USER : HashType {
     // 实现协议的 message
     var message: [UInt8] = []
 
@@ -54,10 +46,6 @@ public final class MD5_USER:HashType{
     // 计算机中首先编写的为低字节位，当从右向左获取字节数据(8位一个字节)时，最终A将变化为0x67452301
     // 散列值（链接变量）此处为计算机读取后的数据
     private let hashes: [UInt32] = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]
-    
-    @objc public init(){
-        
-    }
     
     @objc public func hashString(sourceString: String) -> String {
         guard sourceString.count > 0 else {
@@ -179,7 +167,7 @@ public final class MD5_USER:HashType{
     }
 }
 
-extension MD5_USER{
+extension MD5_USER {
     /** 将UInt8的数组切片进行 与或运算 返回 UInt32 数组*/
     func toUInt32Array(_ slice: ArraySlice<UInt8>) -> [UInt32] {
         // 此处要返回的是UInt32类型的数组，所以获取到 UInt32 的Memory size

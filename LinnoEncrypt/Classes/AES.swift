@@ -5,20 +5,18 @@
 //  Created by 韩增超 on 2022/9/30.
 //
 
-import Foundation
 import CommonCrypto
-
 /** AES*/
-public final class AES: SymmetricEncryptDecryptProducer {
+public final class AES : SymmetricEncryptDecryptProducer {
     
-    public enum AESkeySize{
+    public enum AESkeySize {
         case  AES128
         case  AES192
         case  AES256
     }
-    var keySize:AESkeySize?
+    var keySize: AESkeySize?
     
-    public convenience init( key:String, keySize:AESkeySize = .AES192) {
+    public convenience init(key: String, keySize: AESkeySize = .AES192) {
         self.init()
         testKey = key
         self.keySize = keySize
@@ -27,24 +25,27 @@ public final class AES: SymmetricEncryptDecryptProducer {
         super.init()
     }
     /** change keysize */
-    public func replecekeySize(size:AESkeySize) {
+    public func replecekeySize(size: AESkeySize) {
         keySize = size
     }
-    override func runEncryptDecry(data: Data, kState: kEncryptDecrypt) -> Data {
+    override func runEncryptDecrypt(data: Data, kState: kEncryptDecrypt) -> Data {
        return _AESEncryptOrDecrypt(op: stateOp(kState: kState), data: data, key:testKey)
     }
-    /**
-        AES的加密过程 和 解密过程
+    /** - Parameters:
+         - op : CCOperation： 加密还是解密
+         -  data: 要加密的数据
+         - key: 专有的key
+        - returns  : 加密或者解密后的数据
      */
-    private  func _AESEncryptOrDecrypt(op: CCOperation, data: Data, key:String) -> Data{
+    private  func _AESEncryptOrDecrypt(op: CCOperation, data: Data, key: String) -> Data {
         var ccKeySize:Int
         var alg:Int = kCCAlgorithmAES
         switch keySize {
-        case .AES128: ccKeySize = kCCKeySizeAES128;alg = kCCAlgorithmAES128
-        case .AES192: ccKeySize = kCCKeySizeAES192
-        case .AES256: ccKeySize = kCCKeySizeAES256
-        case .none:
-            ccKeySize = kCCKeySizeAES192
+            case .AES128: ccKeySize = kCCKeySizeAES128;alg = kCCAlgorithmAES128
+            case .AES192: ccKeySize = kCCKeySizeAES192
+            case .AES256: ccKeySize = kCCKeySizeAES256
+            case .none:
+                ccKeySize = kCCKeySizeAES192
         }
 
        let usekey = getBitKey(oldString: key, keyCount: ccKeySize)
