@@ -89,16 +89,16 @@ final class SymmetricTest: XCTestCase {
     func _symmetricEDTest<T>(SymmetricClass:T ,source:Array<Any>) where T : SymmetricEncryptionBase{
       
         let resE = SymmetricClass.encrypt(sourceArray: source)
-        print("\(SymmetricClass.classForCoder) encode = \(resE)")
-        if let resD:Array<Any> = SymmetricClass.decrypt(sourceString: resE){
+        print("\(SymmetricClass.classForCoder) encode = \(String(describing: resE))")
+        if let resD:Array<Any> = SymmetricClass.decrypt(sourceString: resE ?? ""){
             print("\(SymmetricClass.classForCoder) decode = \(resD)\n")
         }
     }
     func _symmetricEDTest<T>(SymmetricClass:T ,source:[String:Any]) where T : SymmetricEncryptionBase{
     
         let resE = SymmetricClass.encrypt(sourceDictionary: source)
-        print("\(SymmetricClass.classForCoder) encode = \(resE)")
-        if let resD:[String:Any] = SymmetricClass.decrypt(sourceString: resE){
+        print("\(SymmetricClass.classForCoder) encode = \(String(describing: resE))")
+        if let resD:[String:Any] = SymmetricClass.decrypt(sourceString: resE ?? ""){
             print("\(SymmetricClass.classForCoder) decode = \(resD)\n")
         }
     }

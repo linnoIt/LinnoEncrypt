@@ -140,8 +140,6 @@ final public class OCSupportShortcut_Symmetric : NSObject {
     @objc public enum encryptMode: Int {
         case DES, _3DES, AES128, AES192, AES256, CAST, RC4, RC2, Blowfish, ChaCha20
     }
-    private var key: String = "test"
-
     private var keySize: otherEncry.KeyLength = .minSize
     
     private var authenticating: String?
@@ -153,25 +151,25 @@ final public class OCSupportShortcut_Symmetric : NSObject {
         if keySizeBig {
             keySize = .maxSize
         }
-        _setAttribute(mode: mode)
+        _setAttribute(mode: mode, key: key)
     }
 
     @objc public convenience init(key: String, ChaCha20Authenticating: String ) {
         self.init()
         authenticating = ChaCha20Authenticating
-        _setAttribute(mode: .ChaCha20)
+        _setAttribute(mode: .ChaCha20, key: key)
     }
     
     @objc public convenience init(key: String ,mode: encryptMode ) {
         self.init()
-        _setAttribute(mode: mode)
+        _setAttribute(mode: mode,key: key)
     }
     
     private override init() {
         super.init()
     }
     
-    private func _setAttribute(mode: encryptMode) {
+    private func _setAttribute(mode: encryptMode, key: String) {
         switch mode {
             case .DES:
                 modeClass = DES(key: key)
@@ -195,7 +193,13 @@ final public class OCSupportShortcut_Symmetric : NSObject {
                 modeClass = ChaCha20(key: key, authenticating: authenticating)
         }
     }
-    
+    // 加密
+    @objc public func encrypt(source: Data)-> Data {
+        return  modeClass.encrypt(source)
+    }
+    @objc public func encryptData(source: Data) -> String {
+        return  modeClass.encrypt(sourceData: source)
+    }
     @objc public func encryptString(source: String) -> String {
         return  modeClass.encrypt(sourceString: source)
     }
@@ -203,8 +207,11 @@ final public class OCSupportShortcut_Symmetric : NSObject {
         return  modeClass.encrypt(sourceArray: source) ?? ""
     }
     @objc public func encryptDictionary(source: Dictionary<String, Any>)-> String {
-        
         return  modeClass.encrypt(sourceDictionary: source) ?? ""
+    }
+    // 解密
+    @objc public func decryptToData(source: String) -> Data {
+        return modeClass.decrypt(sourceString: source)
     }
     @objc public func decryptToString(source: String) -> String {
         return modeClass.decrypt(sourceString: source)

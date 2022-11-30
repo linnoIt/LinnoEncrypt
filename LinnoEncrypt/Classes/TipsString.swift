@@ -81,8 +81,11 @@ var error_curve_25519_signing_error: String { " error: Failed signing " }
 
 // AES_GCM
 var error_AES_GCM_encrypt_error: String { " error: Failed to AES_GCM encrypt " }
+
 var error_AES_GCM_decrypt_error: String { " error: Failed to AES_GCM decrypt " }
+
 var error_AES_GCM_wrapKey_error: String { " error: Failed to AES_GCM wrapKey " }
+
 var error_AES_GCM_unWrapKey_error: String { " error: Failed to AES_GCM unWrapKey " }
 
 // 

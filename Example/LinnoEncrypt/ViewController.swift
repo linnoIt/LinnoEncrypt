@@ -7,15 +7,20 @@
 //
 
 import UIKit
-import LinnoEncrypt
+//import LinnoEncrypt
+
+// ⚠️See unit tests for usage⚠️
+// ⚠️See unit tests for usage⚠️
+// ⚠️See unit tests for usage⚠️
 
 class ViewController: UIViewController {
     
     
-    var rsa = RSA()
+//    var rsa = RSA()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        RSATest()
 //        hashTest()
 //        symmetricEDTest()

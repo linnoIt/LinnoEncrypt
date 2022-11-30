@@ -5,7 +5,6 @@
 //  Created by 韩增超 on 2022/10/18.
 //
 /// 实现：RSA
-/// 未实现：Elgamal、背包算法、Rabin、D-H、ECC椭圆曲线加密算法。
 /** 扩展协议 的方法去做*/
 protocol AsymmetricType : EncryptDecryptType {
     
