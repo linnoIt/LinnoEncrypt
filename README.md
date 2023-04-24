@@ -31,11 +31,11 @@ objective support:
     OCSupportShortcut_RSA
     OCSupportShortcut_Symmetric
     
-    
-  
 generate key:
 
     Curve_25519
+    
+Supported by update 16.4
 
 
 ## Installation

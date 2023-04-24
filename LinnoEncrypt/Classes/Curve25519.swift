@@ -51,7 +51,7 @@ public struct Curve_25519 {
     public static func generatehkdfSymmetricKey<H:HashFunction>(sharedKey: SharedSecret,
                                                         salt: Data,
                                                         shardInfo: Data,
-                                                        hashFunc: H.Type = CryptoKit.SHA256,
+                                                                hashFunc: H.Type = CryptoKit.SHA256.self,
                                                         keySize: SymmetricKeyCount = .byte16) -> SymmetricKey {
        let derivedSymmetricKey = sharedKey.hkdfDerivedSymmetricKey(using:hashFunc, salt: salt, sharedInfo: shardInfo, outputByteCount: keySize.rawValue)
         return derivedSymmetricKey
@@ -59,7 +59,7 @@ public struct Curve_25519 {
     // 生成X963类型的对称密钥
     public static func generateX963SymmetricKey<H:HashFunction>(sharedKey: SharedSecret,
                                                          shardInfo: Data,
-                                                         hashFunc: H.Type = CryptoKit.SHA256,
+                                                                hashFunc: H.Type = CryptoKit.SHA256.self,
                                                          keySize: SymmetricKeyCount = .byte16) -> SymmetricKey {
         let derivedSymmetricKey = sharedKey.x963DerivedSymmetricKey(using:hashFunc, sharedInfo: shardInfo, outputByteCount: keySize.rawValue)
         return derivedSymmetricKey
