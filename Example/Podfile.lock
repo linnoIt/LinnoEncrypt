@@ -1,5 +1,5 @@
 PODS:
-  - LinnoEncrypt (0.1.8)
+  - LinnoEncrypt (0.1.9)
 
 DEPENDENCIES:
   - LinnoEncrypt (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LinnoEncrypt: d45f547a3e59b2b605304d53764b0ae22f32a8d6
+  LinnoEncrypt: def84bfa6418a964cf488764218ec915a37a59cf
 
 PODFILE CHECKSUM: c80b30248ae73a07f2ae5394d6d7b4d17e088c10
 
