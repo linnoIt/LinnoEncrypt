@@ -3,113 +3,113 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A5D475AA3422BE5DCE485328EBE6958 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30A6C73676CE31775C53AFD2421B8BB /* RSA.swift */; };
-		19A49E5A8214A4A269B4003500AA4F46 /* TipsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F53C7D5E2416068662F6DC74B7D61 /* TipsString.swift */; };
-		2982F7515DFD69C3AF7A7DA14C538621 /* ExtensionWithBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED885FD6E48DA0F28E934BBB960BAC /* ExtensionWithBase.swift */; };
-		3B512F63746A2989945AAF0864E9F405 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89943C718900BB7FFFDF337385302F17 /* HMAC.swift */; };
-		45913F8437934555748915B2FDD15420 /* HashType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB82EA1F1E8C96A5C6DCFAFFD5A977 /* HashType.swift */; };
-		4973B767A0368F6296E8936E4F7096D4 /* AES_GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F406F4D7FCDD4BE1A7BCF32247B421 /* AES_GCM.swift */; };
-		524F49C842E6124599222ABED89B3AA2 /* SymmetricEncryptionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62452DA539284ACBA70216446BEC13FD /* SymmetricEncryptionBase.swift */; };
+		01DC4660B24751690E54114FD866FDF4 /* OtherEncrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF156FD80D05CC6960C64265B0F767F /* OtherEncrypt.swift */; };
+		0B92D375A07DE82A3DD558CB84DE1E13 /* _3DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B1ACDAE01F145EA9BDA37EA607F623 /* _3DES.swift */; };
+		14E2EADB10CEF9AD89F8170EE1D7BB12 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0D7EA74CE329C877893A6FE2F4478F /* RSA.swift */; };
+		21E66A11A563292949D5FA574E2882CA /* ExtensionWithBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6438D33E3D24BB7577499914C26E1999 /* ExtensionWithBase.swift */; };
+		2CB16E3F17A9C370406C035424C1116B /* AES_GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7698884D6EC4641A725D1784A230CC7E /* AES_GCM.swift */; };
+		3E94435FF8C0C3EE8E340C9AB5E779C5 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E4E8D7B0FD66F86E622488807FC6B /* AES.swift */; };
+		4530531D353C6D858EEE95B96009EEE7 /* HashString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81C0FA920C3E4113A74ABCFDB29524C /* HashString.swift */; };
+		4AB15DC2101930794F22377A1122DADC /* HashType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3A82B82FA76A8558701E69C9348E /* HashType.swift */; };
+		4D1851B912C4CBEF38BD08A3E01F84EC /* BytesSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C9C5620BEBF2866F190955C076CB2B /* BytesSequence.swift */; };
+		5CD8ECB09662925EA29704B8D37BE55A /* TipsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428696FD2BD0097C4CFBE6E24E4DCA10 /* TipsString.swift */; };
 		601174F940B3547C33637D616FD6357F /* Pods-LinnoEncrypt_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B5337C092351ED634751F45EECB0EC2 /* Pods-LinnoEncrypt_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65547AD59D28E53CC0F6CC05E438A435 /* OCSupportShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133E01E39CF0EB9A660DC0C1E9E7A67A /* OCSupportShortcut.swift */; };
-		660ADBBB840D04790FF6D383A2E624FB /* Sha.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27ED1D355D39370E1E035ABCAEC7257 /* Sha.swift */; };
-		6A209A260B6C6E875041659668B2AD41 /* LinnoEncrypt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C529279E186B0B1866461CF73D5DE9 /* LinnoEncrypt-dummy.m */; };
-		6B89CDCC30C2EBEB2D3C8839AECD8B3E /* AsymmetricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D57079D78596358EE75FC86C60BE21 /* AsymmetricType.swift */; };
-		6D7E58CA4BA052A01A1D96472A638E0C /* SymmetricEncryptDecryptProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7435FB7404C3B1657C760855F166AA25 /* SymmetricEncryptDecryptProducer.swift */; };
 		7030166CCE96FC262862224242D1CA6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		77F686667ABA2147C36B7782B7DB5251 /* SymmetricEncryptDecryptProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D48C6FD4AC1FB7A08F2DC9CCBFB8D9 /* SymmetricEncryptDecryptProducer.swift */; };
 		787D95F8DAB374B9D4BA557BFBE133A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		79817C39D67EAE1CCE8965461FD5A23D /* BytesSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA5D9A82C31E8D89577CFD9CE401408 /* BytesSequence.swift */; };
-		8F281DE4AB68B25CAEA42DB186B05729 /* ChaCha20.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA486E7093A6041577332CD980F47BFF /* ChaCha20.swift */; };
-		94FD8999F018F07939AA1345B498A170 /* DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDA298ECF9B1A22C0A5CB4F99DA0853 /* DES.swift */; };
-		965822436E2488C0F22E2E80422101D6 /* _3DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD97E308B47660D64D7CB7E3EA5F0BD /* _3DES.swift */; };
+		7E0E4854983D7F821C178A229B6B0792 /* DES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE99217A0C903A4A01F5D82CA543FF /* DES.swift */; };
+		952C71DB84781D6AE3A4567624D65138 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0006C80DCDEC8D4B92B4F3166354F8E2 /* HMAC.swift */; };
 		A6987D23D7C06B250A89617BF8874C91 /* Pods-LinnoEncrypt_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE79897F2FB2078C0713089432C24C84 /* Pods-LinnoEncrypt_Tests-dummy.m */; };
-		A78C114F4CF9F2DAB7D0E70E2988655E /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6431CACBCC77C8E316A299101CFB38 /* MD5.swift */; };
-		B977C642AF957E669750B079E44678A0 /* OtherEncrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678848DFDDAD650D00145A8B60A7FAA /* OtherEncrypt.swift */; };
-		C979D00EABB9A1FC8E138FEEB95019B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		CB435B522C5B16EB167495271A3E6758 /* HashString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72B4A532B005937680487DCB0108A78 /* HashString.swift */; };
-		CDDEB43C5CFDD33F82D7EC89DF3AF796 /* EncryptDecryptType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A9E5B4EFE27787542D25DB0F8BA56 /* EncryptDecryptType.swift */; };
-		D3CF9D382EB11BF5572FAE6E3ACDCA40 /* LinnoEncrypt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BE67B3CFF0A45107025378857ED5014 /* LinnoEncrypt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC9A9500254899B8F2096C168103545C /* Curve25519.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409FF50E0554F08888D0AA43F30FF7 /* Curve25519.swift */; };
-		E9AF035A01DB2C48AE6FEFDF5E62B1A4 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB32C3376EFF697BAAE7C380C830BFD /* AES.swift */; };
+		A7392C35154589C2EB1BA8C8DEE15D88 /* AsymmetricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9A20EA54BA09B5F971908FBEBA5E9 /* AsymmetricType.swift */; };
+		BA926EE702BC9EC01CF27571CECA5C94 /* Sha.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51816D98119CF26E9157C8A3728C6B9 /* Sha.swift */; };
+		BC76D9D3D35B96EBAA86BA12731284C2 /* SymmetricEncryptionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CBB772843AE65681022B429F67A13A /* SymmetricEncryptionBase.swift */; };
+		C8CB67C94A2318B2BBA9BAC0ED302296 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0079A1468610BEAFB97188BEA9016D /* MD5.swift */; };
+		CEC12DBB5EC3D5BBD62A01B92F1C086E /* ChaCha20.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37B01EA6E0A1735D8A545C046C28A72 /* ChaCha20.swift */; };
+		D275D4F5E450F9933FEA47A0D9298D3B /* OCSupportShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9432138B74EE1F26CAE0BB23EDA7A67 /* OCSupportShortcut.swift */; };
+		E2FA32F15EB74114AC2D18229C53C903 /* EncryptDecryptType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D191227804F4AED94EA0B54B46C08E45 /* EncryptDecryptType.swift */; };
+		E4F22B20C79638BBBB1FFF7F2D8BACDD /* Curve25519.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1478AA1ED9E6379EF4666ED9F7A529 /* Curve25519.swift */; };
+		EA04C742525972E51F916F030F9BBD06 /* LinnoEncrypt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9543DD46421533248BCD25A88420CECF /* LinnoEncrypt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDDF4520F363D1C801694AA3DD4A9663 /* LinnoEncrypt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE9DE0582612EF068EA2ACBF7FC5323 /* LinnoEncrypt-dummy.m */; };
+		F117F91715BAD761DD657E283E847FD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		F2C93C2B4D76BB4E8D8350C56EBD4DD0 /* Pods-LinnoEncrypt_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FE12E44271AB8AEBAB2F329450DD8578 /* Pods-LinnoEncrypt_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F303E871D94846471372B320A1915908 /* Pods-LinnoEncrypt_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACE6A3EE84450E0C000DC79E6ACE94 /* Pods-LinnoEncrypt_Example-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2E6D538E330203C7B3FC9CE1AB65A7BC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 323F8957AF79C5FF3CFA98968504FD7D;
-			remoteInfo = LinnoEncrypt;
-		};
-		B0E0DE5D96F1F7EC09EF85EA0EC2945C /* PBXContainerItemProxy */ = {
+		B0761FE55452103A142C72C4A5070641 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CD81143223A3AA221010ADB237C6A991;
 			remoteInfo = "Pods-LinnoEncrypt_Example";
 		};
+		C820895C90913260A4B6C9EFFD4C9AA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 323F8957AF79C5FF3CFA98968504FD7D;
+			remoteInfo = LinnoEncrypt;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02D57079D78596358EE75FC86C60BE21 /* AsymmetricType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsymmetricType.swift; path = LinnoEncrypt/Classes/AsymmetricType.swift; sourceTree = "<group>"; };
-		0FA5D9A82C31E8D89577CFD9CE401408 /* BytesSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BytesSequence.swift; path = LinnoEncrypt/Classes/BytesSequence.swift; sourceTree = "<group>"; };
-		133E01E39CF0EB9A660DC0C1E9E7A67A /* OCSupportShortcut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCSupportShortcut.swift; path = LinnoEncrypt/Classes/OCSupportShortcut.swift; sourceTree = "<group>"; };
+		0006C80DCDEC8D4B92B4F3166354F8E2 /* HMAC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = LinnoEncrypt/Classes/HMAC.swift; sourceTree = "<group>"; };
+		097ABCFEDB9CC1995777C072DFA11F7A /* LinnoEncrypt.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = LinnoEncrypt.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0A882169C3F7962FF39AAACC7246D8EE /* LinnoEncrypt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LinnoEncrypt.modulemap; sourceTree = "<group>"; };
 		155114319DAA878ABB8852FEA421283F /* Pods-LinnoEncrypt_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LinnoEncrypt_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		158E6EC8127C18982B3AA35CF9C64A92 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		16F406F4D7FCDD4BE1A7BCF32247B421 /* AES_GCM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AES_GCM.swift; path = LinnoEncrypt/Classes/AES_GCM.swift; sourceTree = "<group>"; };
-		17F0DF9070DB26D55EB6546CA42D704E /* LinnoEncrypt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LinnoEncrypt-prefix.pch"; sourceTree = "<group>"; };
-		2216F73C0ED0B356D5BDCFF824FE0A45 /* LinnoEncrypt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LinnoEncrypt.debug.xcconfig; sourceTree = "<group>"; };
+		2003805F98716C89F28AE6471DB706CA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		26C9C5620BEBF2866F190955C076CB2B /* BytesSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BytesSequence.swift; path = LinnoEncrypt/Classes/BytesSequence.swift; sourceTree = "<group>"; };
+		28D48C6FD4AC1FB7A08F2DC9CCBFB8D9 /* SymmetricEncryptDecryptProducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SymmetricEncryptDecryptProducer.swift; path = LinnoEncrypt/Classes/SymmetricEncryptDecryptProducer.swift; sourceTree = "<group>"; };
 		2C34466CC7C4435DD51A9E8F81BD13A9 /* Pods-LinnoEncrypt_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LinnoEncrypt_Example-Info.plist"; sourceTree = "<group>"; };
-		327F53C7D5E2416068662F6DC74B7D61 /* TipsString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TipsString.swift; path = LinnoEncrypt/Classes/TipsString.swift; sourceTree = "<group>"; };
+		2D1478AA1ED9E6379EF4666ED9F7A529 /* Curve25519.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Curve25519.swift; path = LinnoEncrypt/Classes/Curve25519.swift; sourceTree = "<group>"; };
+		428696FD2BD0097C4CFBE6E24E4DCA10 /* TipsString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TipsString.swift; path = LinnoEncrypt/Classes/TipsString.swift; sourceTree = "<group>"; };
 		44ACE6A3EE84450E0C000DC79E6ACE94 /* Pods-LinnoEncrypt_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LinnoEncrypt_Example-dummy.m"; sourceTree = "<group>"; };
 		453063E107E920A56560ECC77B9B8AB1 /* Pods-LinnoEncrypt_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LinnoEncrypt_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		466C10448D928754706C5269053FAC9A /* Pods-LinnoEncrypt_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LinnoEncrypt_Example.modulemap"; sourceTree = "<group>"; };
-		54EB82EA1F1E8C96A5C6DCFAFFD5A977 /* HashType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashType.swift; path = LinnoEncrypt/Classes/HashType.swift; sourceTree = "<group>"; };
-		5DD97E308B47660D64D7CB7E3EA5F0BD /* _3DES.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = _3DES.swift; path = LinnoEncrypt/Classes/_3DES.swift; sourceTree = "<group>"; };
-		5DDA298ECF9B1A22C0A5CB4F99DA0853 /* DES.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DES.swift; path = LinnoEncrypt/Classes/DES.swift; sourceTree = "<group>"; };
+		4F0079A1468610BEAFB97188BEA9016D /* MD5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MD5.swift; path = LinnoEncrypt/Classes/MD5.swift; sourceTree = "<group>"; };
+		5B1AF99140D7DEEC084EF3076FECC107 /* LinnoEncrypt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LinnoEncrypt.debug.xcconfig; sourceTree = "<group>"; };
 		5E46DD2968EE1D8809CBFE4032F8299E /* Pods-LinnoEncrypt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LinnoEncrypt_Example.release.xcconfig"; sourceTree = "<group>"; };
-		62452DA539284ACBA70216446BEC13FD /* SymmetricEncryptionBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SymmetricEncryptionBase.swift; path = LinnoEncrypt/Classes/SymmetricEncryptionBase.swift; sourceTree = "<group>"; };
-		66ED885FD6E48DA0F28E934BBB960BAC /* ExtensionWithBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionWithBase.swift; path = LinnoEncrypt/Classes/ExtensionWithBase.swift; sourceTree = "<group>"; };
-		6BF48DB87EA2D68C4A68F418004FCEC8 /* LinnoEncrypt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LinnoEncrypt.release.xcconfig; sourceTree = "<group>"; };
-		6DB32C3376EFF697BAAE7C380C830BFD /* AES.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AES.swift; path = LinnoEncrypt/Classes/AES.swift; sourceTree = "<group>"; };
+		5FF156FD80D05CC6960C64265B0F767F /* OtherEncrypt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtherEncrypt.swift; path = LinnoEncrypt/Classes/OtherEncrypt.swift; sourceTree = "<group>"; };
+		6438D33E3D24BB7577499914C26E1999 /* ExtensionWithBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionWithBase.swift; path = LinnoEncrypt/Classes/ExtensionWithBase.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7435FB7404C3B1657C760855F166AA25 /* SymmetricEncryptDecryptProducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SymmetricEncryptDecryptProducer.swift; path = LinnoEncrypt/Classes/SymmetricEncryptDecryptProducer.swift; sourceTree = "<group>"; };
-		7CA23E65E8F60E0ADCB09BE17A20A149 /* LinnoEncrypt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinnoEncrypt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		89943C718900BB7FFFDF337385302F17 /* HMAC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = LinnoEncrypt/Classes/HMAC.swift; sourceTree = "<group>"; };
+		7698884D6EC4641A725D1784A230CC7E /* AES_GCM.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AES_GCM.swift; path = LinnoEncrypt/Classes/AES_GCM.swift; sourceTree = "<group>"; };
+		7CA23E65E8F60E0ADCB09BE17A20A149 /* LinnoEncrypt */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LinnoEncrypt; path = LinnoEncrypt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CEE99217A0C903A4A01F5D82CA543FF /* DES.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DES.swift; path = LinnoEncrypt/Classes/DES.swift; sourceTree = "<group>"; };
 		8B5337C092351ED634751F45EECB0EC2 /* Pods-LinnoEncrypt_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LinnoEncrypt_Tests-umbrella.h"; sourceTree = "<group>"; };
-		8D0AB1A2F5009C95CE1B97FE68783C1A /* LinnoEncrypt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LinnoEncrypt-Info.plist"; sourceTree = "<group>"; };
 		8FC014AFC0F978D64134CE2700654DB0 /* Pods-LinnoEncrypt_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LinnoEncrypt_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		8FC435896C51739A01C8021871317A85 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9543DD46421533248BCD25A88420CECF /* LinnoEncrypt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LinnoEncrypt-umbrella.h"; sourceTree = "<group>"; };
+		961B2201660E190B856B07378FCD1818 /* LinnoEncrypt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LinnoEncrypt-Info.plist"; sourceTree = "<group>"; };
 		985F3B7968AB77B509CB00B85FE91702 /* Pods-LinnoEncrypt_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LinnoEncrypt_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9A6431CACBCC77C8E316A299101CFB38 /* MD5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MD5.swift; path = LinnoEncrypt/Classes/MD5.swift; sourceTree = "<group>"; };
-		9BE67B3CFF0A45107025378857ED5014 /* LinnoEncrypt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LinnoEncrypt-umbrella.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A05C3A82B82FA76A8558701E69C9348E /* HashType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashType.swift; path = LinnoEncrypt/Classes/HashType.swift; sourceTree = "<group>"; };
 		A1733BB5D619728AA8E95726D1EA96D1 /* Pods-LinnoEncrypt_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LinnoEncrypt_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A6CBB772843AE65681022B429F67A13A /* SymmetricEncryptionBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SymmetricEncryptionBase.swift; path = LinnoEncrypt/Classes/SymmetricEncryptionBase.swift; sourceTree = "<group>"; };
+		A81C0FA920C3E4113A74ABCFDB29524C /* HashString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashString.swift; path = LinnoEncrypt/Classes/HashString.swift; sourceTree = "<group>"; };
+		ACE9DE0582612EF068EA2ACBF7FC5323 /* LinnoEncrypt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LinnoEncrypt-dummy.m"; sourceTree = "<group>"; };
 		B30862F132220FC844F7FA02C66C0331 /* Pods-LinnoEncrypt_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LinnoEncrypt_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		B37B01EA6E0A1735D8A545C046C28A72 /* ChaCha20.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChaCha20.swift; path = LinnoEncrypt/Classes/ChaCha20.swift; sourceTree = "<group>"; };
 		B3B1415ABF3F15C65890416733266B3C /* Pods-LinnoEncrypt_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LinnoEncrypt_Tests.modulemap"; sourceTree = "<group>"; };
 		B43217674B0C2EEFBB44CA6BACFC7150 /* Pods-LinnoEncrypt_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LinnoEncrypt_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B66F8D138E1365D8ED22D283A47E7493 /* Pods-LinnoEncrypt_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LinnoEncrypt_Tests-Info.plist"; sourceTree = "<group>"; };
-		B8C529279E186B0B1866461CF73D5DE9 /* LinnoEncrypt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LinnoEncrypt-dummy.m"; sourceTree = "<group>"; };
-		BA9C4CA2E57AA193EDCD4C3F222A7EF9 /* Pods_LinnoEncrypt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinnoEncrypt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C27ED1D355D39370E1E035ABCAEC7257 /* Sha.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sha.swift; path = LinnoEncrypt/Classes/Sha.swift; sourceTree = "<group>"; };
-		C4E94637C504776587BE8AB220B80AFE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C5409FF50E0554F08888D0AA43F30FF7 /* Curve25519.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Curve25519.swift; path = LinnoEncrypt/Classes/Curve25519.swift; sourceTree = "<group>"; };
-		C91A9E5B4EFE27787542D25DB0F8BA56 /* EncryptDecryptType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EncryptDecryptType.swift; path = LinnoEncrypt/Classes/EncryptDecryptType.swift; sourceTree = "<group>"; };
-		D5799C78ECC902BE1B8424CD170AA2FB /* LinnoEncrypt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LinnoEncrypt.modulemap; sourceTree = "<group>"; };
+		B70E4E8D7B0FD66F86E622488807FC6B /* AES.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AES.swift; path = LinnoEncrypt/Classes/AES.swift; sourceTree = "<group>"; };
+		B7C82305F3CDB26EAAC77A391B657401 /* LinnoEncrypt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LinnoEncrypt-prefix.pch"; sourceTree = "<group>"; };
+		BA9C4CA2E57AA193EDCD4C3F222A7EF9 /* Pods-LinnoEncrypt_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LinnoEncrypt_Example"; path = Pods_LinnoEncrypt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C15A17C07001F51BA81E92BE88DD8FDB /* LinnoEncrypt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LinnoEncrypt.release.xcconfig; sourceTree = "<group>"; };
+		D191227804F4AED94EA0B54B46C08E45 /* EncryptDecryptType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EncryptDecryptType.swift; path = LinnoEncrypt/Classes/EncryptDecryptType.swift; sourceTree = "<group>"; };
 		D644D77D827092DB2DEEDE354A317A9D /* Pods-LinnoEncrypt_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LinnoEncrypt_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		D72B4A532B005937680487DCB0108A78 /* HashString.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashString.swift; path = LinnoEncrypt/Classes/HashString.swift; sourceTree = "<group>"; };
-		DCB686BB52F3038954A2AF80F18AE1CA /* LinnoEncrypt.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = LinnoEncrypt.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		EA486E7093A6041577332CD980F47BFF /* ChaCha20.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChaCha20.swift; path = LinnoEncrypt/Classes/ChaCha20.swift; sourceTree = "<group>"; };
+		D9B1ACDAE01F145EA9BDA37EA607F623 /* _3DES.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = _3DES.swift; path = LinnoEncrypt/Classes/_3DES.swift; sourceTree = "<group>"; };
+		DD0D7EA74CE329C877893A6FE2F4478F /* RSA.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSA.swift; path = LinnoEncrypt/Classes/RSA.swift; sourceTree = "<group>"; };
 		EE79897F2FB2078C0713089432C24C84 /* Pods-LinnoEncrypt_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LinnoEncrypt_Tests-dummy.m"; sourceTree = "<group>"; };
-		EFC04EBC18F8CAFA75D9A1CF19AF84B2 /* Pods_LinnoEncrypt_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinnoEncrypt_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30A6C73676CE31775C53AFD2421B8BB /* RSA.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSA.swift; path = LinnoEncrypt/Classes/RSA.swift; sourceTree = "<group>"; };
-		F678848DFDDAD650D00145A8B60A7FAA /* OtherEncrypt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtherEncrypt.swift; path = LinnoEncrypt/Classes/OtherEncrypt.swift; sourceTree = "<group>"; };
+		EFC04EBC18F8CAFA75D9A1CF19AF84B2 /* Pods-LinnoEncrypt_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LinnoEncrypt_Tests"; path = Pods_LinnoEncrypt_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51816D98119CF26E9157C8A3728C6B9 /* Sha.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sha.swift; path = LinnoEncrypt/Classes/Sha.swift; sourceTree = "<group>"; };
+		F9432138B74EE1F26CAE0BB23EDA7A67 /* OCSupportShortcut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCSupportShortcut.swift; path = LinnoEncrypt/Classes/OCSupportShortcut.swift; sourceTree = "<group>"; };
 		FE12E44271AB8AEBAB2F329450DD8578 /* Pods-LinnoEncrypt_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LinnoEncrypt_Example-umbrella.h"; sourceTree = "<group>"; };
+		FFC9A20EA54BA09B5F971908FBEBA5E9 /* AsymmetricType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsymmetricType.swift; path = LinnoEncrypt/Classes/AsymmetricType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,48 +129,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7932A09D1EC6200AD6C4EAABD7B3FD7E /* Frameworks */ = {
+		C9E115948A883DAEEE0FB47E20F30D2B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C979D00EABB9A1FC8E138FEEB95019B5 /* Foundation.framework in Frameworks */,
+				F117F91715BAD761DD657E283E847FD1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03649AF1F3F4D151445CA0E4E45F67B9 /* LinnoEncrypt */ = {
-			isa = PBXGroup;
-			children = (
-				5DD97E308B47660D64D7CB7E3EA5F0BD /* _3DES.swift */,
-				6DB32C3376EFF697BAAE7C380C830BFD /* AES.swift */,
-				16F406F4D7FCDD4BE1A7BCF32247B421 /* AES_GCM.swift */,
-				02D57079D78596358EE75FC86C60BE21 /* AsymmetricType.swift */,
-				0FA5D9A82C31E8D89577CFD9CE401408 /* BytesSequence.swift */,
-				EA486E7093A6041577332CD980F47BFF /* ChaCha20.swift */,
-				C5409FF50E0554F08888D0AA43F30FF7 /* Curve25519.swift */,
-				5DDA298ECF9B1A22C0A5CB4F99DA0853 /* DES.swift */,
-				C91A9E5B4EFE27787542D25DB0F8BA56 /* EncryptDecryptType.swift */,
-				66ED885FD6E48DA0F28E934BBB960BAC /* ExtensionWithBase.swift */,
-				D72B4A532B005937680487DCB0108A78 /* HashString.swift */,
-				54EB82EA1F1E8C96A5C6DCFAFFD5A977 /* HashType.swift */,
-				89943C718900BB7FFFDF337385302F17 /* HMAC.swift */,
-				9A6431CACBCC77C8E316A299101CFB38 /* MD5.swift */,
-				133E01E39CF0EB9A660DC0C1E9E7A67A /* OCSupportShortcut.swift */,
-				F678848DFDDAD650D00145A8B60A7FAA /* OtherEncrypt.swift */,
-				F30A6C73676CE31775C53AFD2421B8BB /* RSA.swift */,
-				C27ED1D355D39370E1E035ABCAEC7257 /* Sha.swift */,
-				7435FB7404C3B1657C760855F166AA25 /* SymmetricEncryptDecryptProducer.swift */,
-				62452DA539284ACBA70216446BEC13FD /* SymmetricEncryptionBase.swift */,
-				327F53C7D5E2416068662F6DC74B7D61 /* TipsString.swift */,
-				64D2D737C151D133A162669EDA27B58B /* Pod */,
-				85C2A99A135D37899B103213E9FC3007 /* Support Files */,
-			);
-			name = LinnoEncrypt;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		47A8D2EE912AD12417DEAE3AE042EC67 /* Pods-LinnoEncrypt_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,37 +164,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		64D2D737C151D133A162669EDA27B58B /* Pod */ = {
+		8C1DA0787ADEF6BAE7065EB63B00876D /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				158E6EC8127C18982B3AA35CF9C64A92 /* LICENSE */,
-				DCB686BB52F3038954A2AF80F18AE1CA /* LinnoEncrypt.podspec */,
-				C4E94637C504776587BE8AB220B80AFE /* README.md */,
+				8FC435896C51739A01C8021871317A85 /* LICENSE */,
+				097ABCFEDB9CC1995777C072DFA11F7A /* LinnoEncrypt.podspec */,
+				2003805F98716C89F28AE6471DB706CA /* README.md */,
 			);
 			name = Pod;
-			sourceTree = "<group>";
-		};
-		78C68FD9B65FC1E4818213C12B450FA6 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				03649AF1F3F4D151445CA0E4E45F67B9 /* LinnoEncrypt */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		85C2A99A135D37899B103213E9FC3007 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D5799C78ECC902BE1B8424CD170AA2FB /* LinnoEncrypt.modulemap */,
-				B8C529279E186B0B1866461CF73D5DE9 /* LinnoEncrypt-dummy.m */,
-				8D0AB1A2F5009C95CE1B97FE68783C1A /* LinnoEncrypt-Info.plist */,
-				17F0DF9070DB26D55EB6546CA42D704E /* LinnoEncrypt-prefix.pch */,
-				9BE67B3CFF0A45107025378857ED5014 /* LinnoEncrypt-umbrella.h */,
-				2216F73C0ED0B356D5BDCFF824FE0A45 /* LinnoEncrypt.debug.xcconfig */,
-				6BF48DB87EA2D68C4A68F418004FCEC8 /* LinnoEncrypt.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/LinnoEncrypt";
 			sourceTree = "<group>";
 		};
 		96FB17556CB067A5796C1C1382367E5A /* Targets Support Files */ = {
@@ -237,12 +183,58 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		9EF797A6D3FB21DD9E81E29DDA46D1BA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A882169C3F7962FF39AAACC7246D8EE /* LinnoEncrypt.modulemap */,
+				ACE9DE0582612EF068EA2ACBF7FC5323 /* LinnoEncrypt-dummy.m */,
+				961B2201660E190B856B07378FCD1818 /* LinnoEncrypt-Info.plist */,
+				B7C82305F3CDB26EAAC77A391B657401 /* LinnoEncrypt-prefix.pch */,
+				9543DD46421533248BCD25A88420CECF /* LinnoEncrypt-umbrella.h */,
+				5B1AF99140D7DEEC084EF3076FECC107 /* LinnoEncrypt.debug.xcconfig */,
+				C15A17C07001F51BA81E92BE88DD8FDB /* LinnoEncrypt.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LinnoEncrypt";
+			sourceTree = "<group>";
+		};
+		B04BF7E8CA3C82D263BF4B78CEBFABAA /* LinnoEncrypt */ = {
+			isa = PBXGroup;
+			children = (
+				D9B1ACDAE01F145EA9BDA37EA607F623 /* _3DES.swift */,
+				B70E4E8D7B0FD66F86E622488807FC6B /* AES.swift */,
+				7698884D6EC4641A725D1784A230CC7E /* AES_GCM.swift */,
+				FFC9A20EA54BA09B5F971908FBEBA5E9 /* AsymmetricType.swift */,
+				26C9C5620BEBF2866F190955C076CB2B /* BytesSequence.swift */,
+				B37B01EA6E0A1735D8A545C046C28A72 /* ChaCha20.swift */,
+				2D1478AA1ED9E6379EF4666ED9F7A529 /* Curve25519.swift */,
+				7CEE99217A0C903A4A01F5D82CA543FF /* DES.swift */,
+				D191227804F4AED94EA0B54B46C08E45 /* EncryptDecryptType.swift */,
+				6438D33E3D24BB7577499914C26E1999 /* ExtensionWithBase.swift */,
+				A81C0FA920C3E4113A74ABCFDB29524C /* HashString.swift */,
+				A05C3A82B82FA76A8558701E69C9348E /* HashType.swift */,
+				0006C80DCDEC8D4B92B4F3166354F8E2 /* HMAC.swift */,
+				4F0079A1468610BEAFB97188BEA9016D /* MD5.swift */,
+				F9432138B74EE1F26CAE0BB23EDA7A67 /* OCSupportShortcut.swift */,
+				5FF156FD80D05CC6960C64265B0F767F /* OtherEncrypt.swift */,
+				DD0D7EA74CE329C877893A6FE2F4478F /* RSA.swift */,
+				F51816D98119CF26E9157C8A3728C6B9 /* Sha.swift */,
+				28D48C6FD4AC1FB7A08F2DC9CCBFB8D9 /* SymmetricEncryptDecryptProducer.swift */,
+				A6CBB772843AE65681022B429F67A13A /* SymmetricEncryptionBase.swift */,
+				428696FD2BD0097C4CFBE6E24E4DCA10 /* TipsString.swift */,
+				8C1DA0787ADEF6BAE7065EB63B00876D /* Pod */,
+				9EF797A6D3FB21DD9E81E29DDA46D1BA /* Support Files */,
+			);
+			name = LinnoEncrypt;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		B40A8FBCC71757F15752721CCF12FF6A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CA23E65E8F60E0ADCB09BE17A20A149 /* LinnoEncrypt.framework */,
-				BA9C4CA2E57AA193EDCD4C3F222A7EF9 /* Pods_LinnoEncrypt_Example.framework */,
-				EFC04EBC18F8CAFA75D9A1CF19AF84B2 /* Pods_LinnoEncrypt_Tests.framework */,
+				7CA23E65E8F60E0ADCB09BE17A20A149 /* LinnoEncrypt */,
+				BA9C4CA2E57AA193EDCD4C3F222A7EF9 /* Pods-LinnoEncrypt_Example */,
+				EFC04EBC18F8CAFA75D9A1CF19AF84B2 /* Pods-LinnoEncrypt_Tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,11 +243,19 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				78C68FD9B65FC1E4818213C12B450FA6 /* Development Pods */,
+				D14F93A5349375F342ABAD52F4ACB681 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				B40A8FBCC71757F15752721CCF12FF6A /* Products */,
 				96FB17556CB067A5796C1C1382367E5A /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		D14F93A5349375F342ABAD52F4ACB681 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B04BF7E8CA3C82D263BF4B78CEBFABAA /* LinnoEncrypt */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -302,11 +302,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6F02F6F7B58B38AE6032A07C4AFE8B06 /* Headers */ = {
+		D3C131042A0D51BD9656C090DC0B34A4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3CF9D382EB11BF5572FAE6E3ACDCA40 /* LinnoEncrypt-umbrella.h in Headers */,
+				EA04C742525972E51F916F030F9BBD06 /* LinnoEncrypt-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,12 +315,12 @@
 /* Begin PBXNativeTarget section */
 		323F8957AF79C5FF3CFA98968504FD7D /* LinnoEncrypt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 26D7AD1A47971C69090E6BF3222972E0 /* Build configuration list for PBXNativeTarget "LinnoEncrypt" */;
+			buildConfigurationList = 4CD2A06375E633F4E1CC807097CB50B4 /* Build configuration list for PBXNativeTarget "LinnoEncrypt" */;
 			buildPhases = (
-				6F02F6F7B58B38AE6032A07C4AFE8B06 /* Headers */,
-				AFE1E76855CBD312BDE1E0093BA84BC8 /* Sources */,
-				7932A09D1EC6200AD6C4EAABD7B3FD7E /* Frameworks */,
-				2B11EB1176F2D962C56782ED31685C03 /* Resources */,
+				D3C131042A0D51BD9656C090DC0B34A4 /* Headers */,
+				85BDD33CFAEBD0A140AC2EDFB07667C7 /* Sources */,
+				C9E115948A883DAEEE0FB47E20F30D2B /* Frameworks */,
+				5F7A9B19DBD35CD167CDCC68476CF035 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -328,7 +328,7 @@
 			);
 			name = LinnoEncrypt;
 			productName = LinnoEncrypt;
-			productReference = 7CA23E65E8F60E0ADCB09BE17A20A149 /* LinnoEncrypt.framework */;
+			productReference = 7CA23E65E8F60E0ADCB09BE17A20A149 /* LinnoEncrypt */;
 			productType = "com.apple.product-type.framework";
 		};
 		BC3C32EF1567E3D1FB888239D483933C /* Pods-LinnoEncrypt_Tests */ = {
@@ -343,11 +343,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				548C1E99419153F57BEFAD0E6CE1A31F /* PBXTargetDependency */,
+				A191ED6E2D92B65CFDF06F4D9E2E28A1 /* PBXTargetDependency */,
 			);
 			name = "Pods-LinnoEncrypt_Tests";
 			productName = Pods_LinnoEncrypt_Tests;
-			productReference = EFC04EBC18F8CAFA75D9A1CF19AF84B2 /* Pods_LinnoEncrypt_Tests.framework */;
+			productReference = EFC04EBC18F8CAFA75D9A1CF19AF84B2 /* Pods-LinnoEncrypt_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 		CD81143223A3AA221010ADB237C6A991 /* Pods-LinnoEncrypt_Example */ = {
@@ -362,11 +362,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				EB507C75319F95D05626F30D3109D330 /* PBXTargetDependency */,
+				07A01D2D0B3EC6E762DC9EDCBBF0E6DA /* PBXTargetDependency */,
 			);
 			name = "Pods-LinnoEncrypt_Example";
 			productName = Pods_LinnoEncrypt_Example;
-			productReference = BA9C4CA2E57AA193EDCD4C3F222A7EF9 /* Pods_LinnoEncrypt_Example.framework */;
+			productReference = BA9C4CA2E57AA193EDCD4C3F222A7EF9 /* Pods-LinnoEncrypt_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -375,9 +375,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -407,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B11EB1176F2D962C56782ED31685C03 /* Resources */ = {
+		5F7A9B19DBD35CD167CDCC68476CF035 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,32 +431,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AFE1E76855CBD312BDE1E0093BA84BC8 /* Sources */ = {
+		85BDD33CFAEBD0A140AC2EDFB07667C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965822436E2488C0F22E2E80422101D6 /* _3DES.swift in Sources */,
-				E9AF035A01DB2C48AE6FEFDF5E62B1A4 /* AES.swift in Sources */,
-				4973B767A0368F6296E8936E4F7096D4 /* AES_GCM.swift in Sources */,
-				6B89CDCC30C2EBEB2D3C8839AECD8B3E /* AsymmetricType.swift in Sources */,
-				79817C39D67EAE1CCE8965461FD5A23D /* BytesSequence.swift in Sources */,
-				8F281DE4AB68B25CAEA42DB186B05729 /* ChaCha20.swift in Sources */,
-				DC9A9500254899B8F2096C168103545C /* Curve25519.swift in Sources */,
-				94FD8999F018F07939AA1345B498A170 /* DES.swift in Sources */,
-				CDDEB43C5CFDD33F82D7EC89DF3AF796 /* EncryptDecryptType.swift in Sources */,
-				2982F7515DFD69C3AF7A7DA14C538621 /* ExtensionWithBase.swift in Sources */,
-				CB435B522C5B16EB167495271A3E6758 /* HashString.swift in Sources */,
-				45913F8437934555748915B2FDD15420 /* HashType.swift in Sources */,
-				3B512F63746A2989945AAF0864E9F405 /* HMAC.swift in Sources */,
-				6A209A260B6C6E875041659668B2AD41 /* LinnoEncrypt-dummy.m in Sources */,
-				A78C114F4CF9F2DAB7D0E70E2988655E /* MD5.swift in Sources */,
-				65547AD59D28E53CC0F6CC05E438A435 /* OCSupportShortcut.swift in Sources */,
-				B977C642AF957E669750B079E44678A0 /* OtherEncrypt.swift in Sources */,
-				0A5D475AA3422BE5DCE485328EBE6958 /* RSA.swift in Sources */,
-				660ADBBB840D04790FF6D383A2E624FB /* Sha.swift in Sources */,
-				6D7E58CA4BA052A01A1D96472A638E0C /* SymmetricEncryptDecryptProducer.swift in Sources */,
-				524F49C842E6124599222ABED89B3AA2 /* SymmetricEncryptionBase.swift in Sources */,
-				19A49E5A8214A4A269B4003500AA4F46 /* TipsString.swift in Sources */,
+				0B92D375A07DE82A3DD558CB84DE1E13 /* _3DES.swift in Sources */,
+				3E94435FF8C0C3EE8E340C9AB5E779C5 /* AES.swift in Sources */,
+				2CB16E3F17A9C370406C035424C1116B /* AES_GCM.swift in Sources */,
+				A7392C35154589C2EB1BA8C8DEE15D88 /* AsymmetricType.swift in Sources */,
+				4D1851B912C4CBEF38BD08A3E01F84EC /* BytesSequence.swift in Sources */,
+				CEC12DBB5EC3D5BBD62A01B92F1C086E /* ChaCha20.swift in Sources */,
+				E4F22B20C79638BBBB1FFF7F2D8BACDD /* Curve25519.swift in Sources */,
+				7E0E4854983D7F821C178A229B6B0792 /* DES.swift in Sources */,
+				E2FA32F15EB74114AC2D18229C53C903 /* EncryptDecryptType.swift in Sources */,
+				21E66A11A563292949D5FA574E2882CA /* ExtensionWithBase.swift in Sources */,
+				4530531D353C6D858EEE95B96009EEE7 /* HashString.swift in Sources */,
+				4AB15DC2101930794F22377A1122DADC /* HashType.swift in Sources */,
+				952C71DB84781D6AE3A4567624D65138 /* HMAC.swift in Sources */,
+				EDDF4520F363D1C801694AA3DD4A9663 /* LinnoEncrypt-dummy.m in Sources */,
+				C8CB67C94A2318B2BBA9BAC0ED302296 /* MD5.swift in Sources */,
+				D275D4F5E450F9933FEA47A0D9298D3B /* OCSupportShortcut.swift in Sources */,
+				01DC4660B24751690E54114FD866FDF4 /* OtherEncrypt.swift in Sources */,
+				14E2EADB10CEF9AD89F8170EE1D7BB12 /* RSA.swift in Sources */,
+				BA926EE702BC9EC01CF27571CECA5C94 /* Sha.swift in Sources */,
+				77F686667ABA2147C36B7782B7DB5251 /* SymmetricEncryptDecryptProducer.swift in Sources */,
+				BC76D9D3D35B96EBAA86BA12731284C2 /* SymmetricEncryptionBase.swift in Sources */,
+				5CD8ECB09662925EA29704B8D37BE55A /* TipsString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,84 +471,41 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		548C1E99419153F57BEFAD0E6CE1A31F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-LinnoEncrypt_Example";
-			target = CD81143223A3AA221010ADB237C6A991 /* Pods-LinnoEncrypt_Example */;
-			targetProxy = B0E0DE5D96F1F7EC09EF85EA0EC2945C /* PBXContainerItemProxy */;
-		};
-		EB507C75319F95D05626F30D3109D330 /* PBXTargetDependency */ = {
+		07A01D2D0B3EC6E762DC9EDCBBF0E6DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LinnoEncrypt;
 			target = 323F8957AF79C5FF3CFA98968504FD7D /* LinnoEncrypt */;
-			targetProxy = 2E6D538E330203C7B3FC9CE1AB65A7BC /* PBXContainerItemProxy */;
+			targetProxy = C820895C90913260A4B6C9EFFD4C9AA8 /* PBXContainerItemProxy */;
+		};
+		A191ED6E2D92B65CFDF06F4D9E2E28A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-LinnoEncrypt_Example";
+			target = CD81143223A3AA221010ADB237C6A991 /* Pods-LinnoEncrypt_Example */;
+			targetProxy = B0761FE55452103A142C72C4A5070641 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1A4299467562359BAA3372B040C2A674 /* Release */ = {
+		0802AB6C433725E96167C4DC4DA5601C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FC014AFC0F978D64134CE2700654DB0 /* Pods-LinnoEncrypt_Tests.release.xcconfig */;
+			baseConfigurationReference = 5B1AF99140D7DEEC084EF3076FECC107 /* LinnoEncrypt.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		34827925C2156DB77A577B4221588BF8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2216F73C0ED0B356D5BDCFF824FE0A45 /* LinnoEncrypt.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/LinnoEncrypt/LinnoEncrypt-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/LinnoEncrypt/LinnoEncrypt-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/LinnoEncrypt/LinnoEncrypt.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_MODULE_NAME = LinnoEncrypt;
 				PRODUCT_NAME = LinnoEncrypt;
 				SDKROOT = iphoneos;
@@ -562,84 +518,7 @@
 			};
 			name = Debug;
 		};
-		54C298D8E9BAC205E944F7F72A01978C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E46DD2968EE1D8809CBFE4032F8299E /* Pods-LinnoEncrypt_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		7798E6CC45138FAB7853FBBDEF837EB1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 985F3B7968AB77B509CB00B85FE91702 /* Pods-LinnoEncrypt_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -674,144 +553,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		851593EB8DC91D8CDE8F3AD0F30130FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BF48DB87EA2D68C4A68F418004FCEC8 /* LinnoEncrypt.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/LinnoEncrypt/LinnoEncrypt-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LinnoEncrypt/LinnoEncrypt-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/LinnoEncrypt/LinnoEncrypt.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				PRODUCT_MODULE_NAME = LinnoEncrypt;
-				PRODUCT_NAME = LinnoEncrypt;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D0C8A89F20E8361EE5D1C0D0929BD1C0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 155114319DAA878ABB8852FEA421283F /* Pods-LinnoEncrypt_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -835,6 +576,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -842,23 +584,255 @@
 			};
 			name = Debug;
 		};
+		59B1024DC980A3EAF8D09470E8A359A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C15A17C07001F51BA81E92BE88DD8FDB /* LinnoEncrypt.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LinnoEncrypt/LinnoEncrypt-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LinnoEncrypt/LinnoEncrypt-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LinnoEncrypt/LinnoEncrypt.modulemap";
+				PRODUCT_MODULE_NAME = LinnoEncrypt;
+				PRODUCT_NAME = LinnoEncrypt;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		954F918EECCC328F64C5F9A84BBD1418 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 155114319DAA878ABB8852FEA421283F /* Pods-LinnoEncrypt_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C30E20A38F057A43A48592861C39226E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E46DD2968EE1D8809CBFE4032F8299E /* Pods-LinnoEncrypt_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DFB6C8910B92E3515D340D85DA68083D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 985F3B7968AB77B509CB00B85FE91702 /* Pods-LinnoEncrypt_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Example/Pods-LinnoEncrypt_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		ECADA87E4E35C0D472061EDFEEF66770 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FC014AFC0F978D64134CE2700654DB0 /* Pods-LinnoEncrypt_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LinnoEncrypt_Tests/Pods-LinnoEncrypt_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		26D7AD1A47971C69090E6BF3222972E0 /* Build configuration list for PBXNativeTarget "LinnoEncrypt" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				34827925C2156DB77A577B4221588BF8 /* Debug */,
-				851593EB8DC91D8CDE8F3AD0F30130FF /* Release */,
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+		4CD2A06375E633F4E1CC807097CB50B4 /* Build configuration list for PBXNativeTarget "LinnoEncrypt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
-				7EE7A78859F657F6BEFC651185B43192 /* Release */,
+				0802AB6C433725E96167C4DC4DA5601C /* Debug */,
+				59B1024DC980A3EAF8D09470E8A359A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -866,8 +840,8 @@
 		F83F6F6E5D87745291D342C57BEADA59 /* Build configuration list for PBXNativeTarget "Pods-LinnoEncrypt_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D0C8A89F20E8361EE5D1C0D0929BD1C0 /* Debug */,
-				1A4299467562359BAA3372B040C2A674 /* Release */,
+				954F918EECCC328F64C5F9A84BBD1418 /* Debug */,
+				ECADA87E4E35C0D472061EDFEEF66770 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -875,8 +849,8 @@
 		FF5410EC9A89173439DFA0D0464C4746 /* Build configuration list for PBXNativeTarget "Pods-LinnoEncrypt_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7798E6CC45138FAB7853FBBDEF837EB1 /* Debug */,
-				54C298D8E9BAC205E944F7F72A01978C /* Release */,
+				DFB6C8910B92E3515D340D85DA68083D /* Debug */,
+				C30E20A38F057A43A48592861C39226E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

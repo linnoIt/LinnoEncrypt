@@ -45,8 +45,7 @@ extension EncryptDecryptType{
     /** 加密*/
     public func encrypt(sourceData: Data) -> String {
         let resData = encrypt(sourceData)
-        return resData.base64EncodedString(options: .lineLength64Characters)
-
+        return resData.base64EncodedString()
     }
     public func encrypt(sourceString: String) -> String {
         return encrypt(sourceData:_stringData(sourceString: sourceString, kState: .kEncrypt))
