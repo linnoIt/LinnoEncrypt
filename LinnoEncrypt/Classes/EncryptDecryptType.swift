@@ -8,6 +8,8 @@
 //1 chacha20 支持ios13 以下
 //2 非对称加密：P256\P384\P521。
 
+import Foundation
+
 public enum kEncryptDecrypt {
     case kEncrypt
     case kDecrypt
@@ -86,6 +88,34 @@ extension EncryptDecryptType{
         }
         return nil
     }
+
+    // MARK: - 无歧义别名（0.2.0 新增，纯追加，既有方法一律保留）
+    // 上面 4 个 decrypt(sourceString:) 仅靠返回类型区分，调用点必须显式标注类型，否则报 ambiguous。
+    // 下面这组方法名自带返回类型语义，给新代码一条无需类型标注的路径；行为与对应重载完全等价。
+
+    /// 解密为 Data（等价于 `decrypt(sourceString:) as Data`）
+    public func decryptToData(sourceString: String) -> Data {
+        return decrypt(_stringData(sourceString: sourceString, kState: .kDecrypt))
+    }
+
+    /// 解密为 UTF-8 字符串（等价于 `decrypt(sourceString:) as String`）
+    public func decryptToString(sourceString: String) -> String {
+        if let resString = String(data: decryptToData(sourceString: sourceString), encoding: .utf8) {
+            return resString
+        }
+        return ""
+    }
+
+    /// 解密为数组（等价于 `decrypt(sourceString:) as [Any]?`）
+    public func decryptToArray(sourceString: String) -> Array<Any>? {
+        return getArrayFromJSONString(jsonString: decryptToString(sourceString: sourceString))
+    }
+
+    /// 解密为字典（等价于 `decrypt(sourceString:) as [String: Any]?`）
+    public func decryptToDictionary(sourceString: String) -> Dictionary<String, Any>? {
+        return getDictionaryFromJSONString(jsonString: decryptToString(sourceString: sourceString))
+    }
+
     ///   字符串转data
     private func _stringData(sourceString: String, kState: kEncryptDecrypt) -> Data {
         guard kState != .kEncrypt else {

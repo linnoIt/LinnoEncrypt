@@ -92,3 +92,16 @@ var error_AES_GCM_unWrapKey_error: String { " error: Failed to AES_GCM unWrapKey
 var error_converting_uint32: String{ " Error: converting data to UInt32 array " }
 
 var tips_data_type_error: String { " The data format needs to be utf8" }
+
+// SymmetricEncryptDecryptProducer
+var error_key_not_set: String { " the key is empty, please init(key:) or replacekey(key:) first " }
+
+var error_malloc_failed: String { " malloc failed before CCCrypt " }
+
+var error_key_length_not_found: String { " the key length parameter is not supported: " }
+
+var error_cbc_stream_not_supported: String { " CBC mode is not supported for stream ciphers such as RC4 " }
+
+var tips_iv_length: String { " the iv length must equal the block size (AES:16, DES/3DES/CAST/RC2/Blowfish:8): " }
+
+var error_cipher_length: String { " the cipher data is too short to contain the iv " }

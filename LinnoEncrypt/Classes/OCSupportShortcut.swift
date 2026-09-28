@@ -5,6 +5,9 @@
 //  Created by 韩增超 on 2022/11/7.
 //
 
+import Foundation
+import Security
+
 /// hash字符串支持oc使用
 final public class OCSupportShortcut_Hash : NSObject {
     
@@ -42,6 +45,34 @@ final public class OCSupportShortcut_Hash : NSObject {
     /// HMAC
     @objc public static func hmacString(source: String, key: String ,type: hashType) -> String {
         return source.hashString.hmac(key: key, type:type.type )
+    }
+    /// HMAC（Base64 输出，0.2.0 新增）
+    @objc public static func hmacBase64(source: String, key: String, type: hashType) -> String {
+        return H_MAC(key: key, type: type.type).hashString(sourceString: source, format: .base64)
+    }
+    /// HMAC 校验（MAC 按 16 进制小写解析，0.2.0 新增）
+    @objc public static func hmacVerify(source: String, mac: String, key: String, type: hashType) -> Bool {
+        return hmacVerify(source: source, mac: mac, key: key, type: type, format: .hexLowercase)
+    }
+    /// HMAC 校验（MAC 格式由 format 指定，0.2.0 新增）
+    @objc public static func hmacVerify(source: String, mac: String, key: String, type: hashType, format: macFormat) -> Bool {
+        return H_MAC(key: key, type: type.type).isValid(macString: mac, format: format.type, for: Data(source.utf8))
+    }
+
+    /// HMAC 校验时 MAC 字符串的格式（OC 侧使用；Swift 侧直接用 H_MAC.H_MAC_outputFormat）
+    @objc public enum macFormat: Int {
+        case hexLowercase
+        case hexUppercase
+        case base64
+        var type: H_MAC.H_MAC_outputFormat {
+            var result: H_MAC.H_MAC_outputFormat
+            switch self {
+            case .hexLowercase: result = .hexLowercase
+            case .hexUppercase: result = .hexUppercase
+            case .base64:       result = .base64
+            }
+            return result
+        }
     }
 }
 
@@ -94,27 +125,27 @@ final public class OCSupportShortcut_RSA : NSObject {
      }
     
     @objc public func encryptString(source: String) -> String {
-        rsa!.encrypt(sourceString: source)
+        return rsa?.encrypt(sourceString: source) ?? ""
     }
     @objc public func encryptArray(source: Array<Any>)-> String {
-        rsa!.encrypt(sourceArray: source) ?? ""
+        return rsa?.encrypt(sourceArray: source) ?? ""
     }
     @objc public func encryptDictionary(source: Dictionary<String, Any>)-> String {
-        rsa!.encrypt(sourceDictionary: source) ?? ""
+        return rsa?.encrypt(sourceDictionary: source) ?? ""
     }
     @objc public func decryptToString(source: String) -> String {
-        rsa!.decrypt(sourceString: source)
+        return rsa?.decrypt(sourceString: source) ?? ""
     }
     
     @objc public func decryptToArray(source: String) -> Array<Any> {
-        if let res:Array<Any> = rsa!.decrypt(sourceString: source) {
+        if let res:Array<Any> = rsa?.decrypt(sourceString: source) {
             return res
         }
         return []
     }
     
     @objc public func decryptToDictionary(source: String) -> Dictionary<String, Any> {
-        if let res:Dictionary<String, Any> = rsa!.decrypt(sourceString: source){
+        if let res:Dictionary<String, Any> = rsa?.decrypt(sourceString: source){
             return res
         }
         return [:]
@@ -193,6 +224,16 @@ final public class OCSupportShortcut_Symmetric : NSObject {
                 modeClass = ChaCha20(key: key, authenticating: authenticating)
         }
     }
+    // MARK: - 工作模式（默认 ECB，与旧版本密文完全兼容，不影响已有调用）
+    /** 切换为 CBC 模式：自动生成随机 IV 并前置到密文中（推荐用法） */
+    @objc public func useCBCMode() {
+        modeClass.replaceCipherMode(.cbc(iv: nil))
+    }
+    /** 切换为 CBC 模式：使用调用方指定的 IV，长度须等于分组长度（AES 16，DES/3DES/CAST/RC2/Blowfish 8） */
+    @objc public func useCBCMode(iv: Data) {
+        modeClass.replaceCipherMode(.cbc(iv: iv))
+    }
+    
     // 加密
     @objc public func encrypt(source: Data)-> Data {
         return  modeClass.encrypt(source)

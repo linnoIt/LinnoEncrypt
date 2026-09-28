@@ -5,8 +5,19 @@
 //  Created by 韩增超 on 2022/10/14.
 //
 
-func encryptAbstractMethod(file: StaticString = #file, line: UInt = #line) -> Swift.Never {
-    encryptFatalError(error_abstract_method, file: file, line: line)
+import Foundation
+
+/**
+ 抽象方法兜底。
+ Debug 构建下 assertionFailure 立即中断，暴露"子类未实现该抽象方法"；
+ Release 构建下断言被编译器消除，仅打印错误并返回空 Data，避免线上直接崩溃。
+ */
+@discardableResult
+func encryptAbstractMethod(file: StaticString = #file, line: UInt = #line) -> Data {
+    let message = "\(error_abstract_method)(\(file):\(line))"
+    errorTips(tips: message)
+    assertionFailure(message)
+    return Data()
 }
 func encryptFatalError(_ lastMessage: @autoclosure () -> String, file: StaticString = #file, line: UInt = #line) -> Swift.Never {
     fatalError(lastMessage(), file: file, line: line)
@@ -54,11 +65,15 @@ extension String {
     /** 字符串转16进制data*/
     func hexadecimal() -> Data? {
         var data = Data(capacity: self.count / 2)
-        let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
+        guard let regex = try? NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive) else {
+            return nil
+        }
         regex.enumerateMatches(in: self, range: NSMakeRange(0, utf16.count)) { match, flags, stop in
-            let byteString = (self as NSString).substring(with: match!.range)
-            var num = UInt8(byteString, radix: 16)!
-            data.append(&num, count: 1)
+            guard let match = match else { return }
+            let byteString = (self as NSString).substring(with: match.range)
+            guard let num = UInt8(byteString, radix: 16) else { return }
+            var byte = num
+            data.append(&byte, count: 1)
         }
         guard data.count > 0 else { return nil }
         return data
@@ -84,9 +99,11 @@ extension Data {
 
 /** 获取json转换后的容器 */
 func _getContainerFromJSONString(json: String) throws -> Any {
-    let jsonData:Data = json.data(using: .utf8)!
-    let container =  try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
-    return container
+    guard let jsonData = json.data(using: .utf8) else {
+        throw NSError(domain: "LinnoEncrypt", code: -1,
+                      userInfo: [NSLocalizedDescriptionKey: tips_data_type_error])
+    }
+    return try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
 }
 /**JSONString转换为数组**/
 func getArrayFromJSONString(jsonString: String) -> Array<Any>? {

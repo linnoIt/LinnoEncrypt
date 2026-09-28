@@ -4,6 +4,10 @@
 //
 //  Created by 韩增超 on 2022/10/18.
 //
+
+import Foundation
+import Security
+
 /// 实现：RSA
 /** 扩展协议 的方法去做*/
 protocol AsymmetricType : EncryptDecryptType {
@@ -45,9 +49,16 @@ extension AsymmetricType {
         // 创建 privateSecKey
         var error: Unmanaged<CFError>?
         guard let privateKey = SecKeyCreateRandomKey(parameters as CFDictionary, &error) else {
+            // 顺序不可调换：
+            //  1) 先取错误描述 —— 此时 CFError 仍存活；
+            //  2) 再 takeRetainedValue() 消费掉 Unmanaged 持有的引用（否则泄漏）；
+            //  3) 断言用第 1 步的布尔快照，不再触碰已被消费的 error。
+            // 若把 (2) 提到 (1) 之前，后续 String(describing: error) 访问的是已释放对象，
+            // 会触发 use-after-free（实测 EXC_BREAKPOINT / SIGTRAP）。
             let tipsString = "\(error_create_privateKey) \(String(describing: error))"
-            _ = error!.takeRetainedValue() as Error
-            assert((error != nil), tipsString)
+            let hasError = (error != nil)
+            _ = error?.takeRetainedValue()
+            assert(hasError, tipsString)
             errorTips(tips: tipsString)
             return nil
         }
@@ -63,8 +74,6 @@ extension AsymmetricType {
      - returns: 密钥 的data
      */
     func getKeyDataFrom(secKey: SecKey, tag: Data, keyType: CFString) -> Data {
-        var data: Data?
-
         var query = [String: Any]()
         query[kSecClass as String] = kSecClassKey
         query[kSecAttrApplicationTag as String] = tag
@@ -80,9 +89,12 @@ extension AsymmetricType {
             errorTips(tips: error_save_keychain)
             return Data()
         }
-        data = result as? Data
         SecItemDelete(query as CFDictionary)
-        return data!
+        guard let keyData = result as? Data else {
+            errorTips(tips: error_save_keychain)
+            return Data()
+        }
+        return keyData
     }
     
     /**
@@ -98,8 +110,8 @@ extension AsymmetricType {
         var newKey = string
         let spos = newKey.range(of: "-----BEGIN \(keyType) \(keyClass) KEY-----")
         let epos = newKey.range(of: "-----END \(keyType) \(keyClass) KEY-----")
-        if spos != nil && epos != nil {
-            newKey = String(newKey[spos!.upperBound..<epos!.lowerBound])
+        if let spos = spos, let epos = epos {
+            newKey = String(newKey[spos.upperBound..<epos.lowerBound])
         }
         newKey = newKey.replacingOccurrences(of: "\r", with: "")
         newKey = newKey.replacingOccurrences(of: "\n", with: "")
@@ -126,9 +138,12 @@ extension AsymmetricType {
                         kSecAttrKeyClass : keyClass ] as [CFString : Any]
         var error: Unmanaged<CFError>?
         guard let secKey = SecKeyCreateWithData(data, parameters as CFDictionary, &error) else {
-            _ = error!.takeRetainedValue() as Error
+            // 与 generateKeyPair 相同的顺序约束：先取描述 → 再消费引用 → 断言用布尔快照。
+            // 之前把消费写在了取描述之前，导致传入空 / 非法 key 数据时访问已释放的 CFError 而崩溃。
             let tipsString = "\(error_string_get_secKey) \(String(describing: error))"
-            assert((error != nil), tipsString)
+            let hasError = (error != nil)
+            _ = error?.takeRetainedValue()
+            assert(hasError, tipsString)
             errorTips(tips: tipsString)
             return nil
         }
@@ -145,12 +160,19 @@ extension AsymmetricType {
     func getKeyWithKeychain(query: Dictionary<String, Any>) -> SecKey? {
         var key: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &key)
-        if status == errSecSuccess {
-            let result = key as! SecKey
-            return result
+        guard status == errSecSuccess, let key = key else {
+            errorTips(tips: error_get_keychain)
+            return nil
         }
-        errorTips(tips: error_get_keychain)
-        return nil
+        // CFTypeRef → SecKey 不能写条件向下转换：CoreFoundation 类型不支持运行时类型检查，
+        // 写成 `as?` 会直接编译报错（conditional downcast ... will always succeed），
+        // 原实现用 `as!`（失败即崩溃）。此处沿用本文件既有的 Unmanaged 取回方式，
+        // 并先用 CFTypeID 确认实际类型，因此不存在强解包也无崩溃路径。
+        guard CFGetTypeID(key) == SecKeyGetTypeID() else {
+            errorTips(tips: error_get_keychain)
+            return nil
+        }
+        return Unmanaged<SecKey>.fromOpaque(Unmanaged.passUnretained(key).toOpaque()).takeUnretainedValue()
     }
     /**
      从.der证书获取公钥
@@ -174,14 +196,16 @@ extension AsymmetricType {
         let key: SecKey?
         var trust: SecTrust?
         let policy = SecPolicyCreateBasicX509()
-        if SecTrustCreateWithCertificates(cert, policy, &trust) == noErr {
-            var result = SecTrustResultType.invalid
-            if trust != nil {
-                if SecTrustEvaluate(trust!, &result) == noErr {
-                    key = SecTrustCopyPublicKey(trust!)
-                    return key
-                }
+        if SecTrustCreateWithCertificates(cert, policy, &trust) == noErr, let trustRef = trust {
+            // 用非弃用的 SecTrustEvaluateWithError 替换 iOS 13 起弃用的 SecTrustEvaluate（前者 iOS 12 起可用）。
+            // 本方法的目的是「从 DER 证书取出公钥」，并不做信任链判定；
+            // 因此语义与旧实现保持一致：评估结果不通过也照常取公钥（旧实现同样只看评估过程是否出错）。
+            var trustError: CFError?
+            if !SecTrustEvaluateWithError(trustRef, &trustError), let trustError = trustError {
+                errorTips(tips: "\(error_public_secKey_null) \(trustError)")
             }
+            key = _copyPublicKey(from: trustRef)
+            return key
         }
         errorTips(tips: error_public_secKey_null)
         return nil
@@ -207,18 +231,37 @@ extension AsymmetricType {
         let options = NSMutableDictionary.init()
         options[kSecImportExportPassphrase as String] = password
         var items: CFArray?
-        var securityError = SecPKCS12Import(data as CFData, options, &items)
-        if securityError == noErr && CFArrayGetCount(items) > 0 {
-            let identityDict = CFArrayGetValueAtIndex(items, 0)
-            let appKey = Unmanaged.passUnretained(kSecImportItemIdentity).toOpaque()
-            let identityApp = CFDictionaryGetValue((identityDict as! CFDictionary), appKey)
-            securityError = SecIdentityCopyPrivateKey(identityApp as! SecIdentity, &key)
-            if securityError == noErr {
-                return key
-            }
+        let securityError = SecPKCS12Import(data as CFData, options, &items)
+        guard securityError == noErr,
+              let importItems = items,
+              CFArrayGetCount(importItems) > 0 else {
+            errorTips(tips: error_private_secKey_null)
+            return nil
         }
-        errorTips(tips: error_private_secKey_null)
-        return nil
+        let appKey = Unmanaged.passUnretained(kSecImportItemIdentity).toOpaque()
+        guard let identityDictRaw = CFArrayGetValueAtIndex(importItems, 0) else {
+            errorTips(tips: error_private_secKey_null)
+            return nil
+        }
+        let identityDict = Unmanaged<CFDictionary>.fromOpaque(identityDictRaw).takeUnretainedValue()
+        guard let identityAppRaw = CFDictionaryGetValue(identityDict, appKey) else {
+            errorTips(tips: error_private_secKey_null)
+            return nil
+        }
+        let identityApp = Unmanaged<SecIdentity>.fromOpaque(identityAppRaw).takeUnretainedValue()
+        guard SecIdentityCopyPrivateKey(identityApp, &key) == noErr else {
+            errorTips(tips: error_private_secKey_null)
+            return nil
+        }
+        return key
+    }
+
+    /// 取证书公钥：iOS 14 / macOS 11 起用 SecTrustCopyKey，更低版本回退到已弃用的 SecTrustCopyPublicKey
+    private func _copyPublicKey(from trust: SecTrust) -> SecKey? {
+        if #available(iOS 14.0, macOS 11.0, *) {
+            return SecTrustCopyKey(trust)
+        }
+        return SecTrustCopyPublicKey(trust)
     }
 }
 

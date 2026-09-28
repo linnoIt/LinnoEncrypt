@@ -6,6 +6,7 @@
 //
 
 import CommonCrypto
+import Foundation
 /** AES*/
 public final class AES : SymmetricEncryptDecryptProducer {
     
@@ -16,39 +17,37 @@ public final class AES : SymmetricEncryptDecryptProducer {
     }
     var keySize: AESkeySize?
     
-    public convenience init(key: String, keySize: AESkeySize = .AES192) {
+    /**
+     - Parameters:
+        - key       : 专有的 key
+        - keySize   : key 长度，默认 AES192
+        - cipherMode: 工作模式。默认 .ecb（与旧版本密文完全兼容）；
+                      需要 CBC 时传 .cbc(iv: nil) 由库自动生成随机 IV，或传 .cbc(iv: 自己的IV)
+     */
+    public convenience init(key: String, keySize: AESkeySize = .AES192, cipherMode: SymmetricCipherMode = .ecb) {
         self.init()
         testKey = key
         self.keySize = keySize
+        replaceCipherMode(cipherMode)
     }
-    private override init() {
+    /// 供外部（其他模块 / 其他项目）构造；此时 key 为空，调用加解密会按约定报错，不会使用弱默认 key
+    public override init() {
         super.init()
     }
     /** change keysize */
     public func replecekeySize(size: AESkeySize) {
         keySize = size
     }
-    override func runEncryptDecrypt(data: Data, kState: kEncryptDecrypt) -> Data {
-       return _AESEncryptOrDecrypt(op: stateOp(kState: kState), data: data, key:testKey)
-    }
-    /** - Parameters:
-         - op : CCOperation： 加密还是解密
-         -  data: 要加密的数据
-         - key: 专有的key
-        - returns  : 加密或者解密后的数据
-     */
-    private  func _AESEncryptOrDecrypt(op: CCOperation, data: Data, key: String) -> Data {
-        var ccKeySize:Int
-        var alg:Int = kCCAlgorithmAES
+    /** 具体算法只提供参数，模式（ECB/CBC）与 IV 处理统一由 EDWithMode 完成 */
+    override func runEncryptDecrypt(data: Data, kState: kEncryptDecrypt) -> Data? {
+        var ccKeySize: Int = kCCKeySizeAES192
+        var alg: Int = kCCAlgorithmAES
         switch keySize {
             case .AES128: ccKeySize = kCCKeySizeAES128;alg = kCCAlgorithmAES128
             case .AES192: ccKeySize = kCCKeySizeAES192
             case .AES256: ccKeySize = kCCKeySizeAES256
-            case .none:
-                ccKeySize = kCCKeySizeAES192
+            case .none:   ccKeySize = kCCKeySizeAES192
         }
-
-       let usekey = getBitKey(oldString: key, keyCount: ccKeySize)
-        return EncryptOrDecrypt(data, (usekey as NSString).utf8String!, op, CCAlgorithm(alg), CCOptions(kCCOptionPKCS7Padding | kCCOptionECBMode), ccKeySize ,kCCBlockSizeAES128)
+        return EDWithMode(data: data, kState: kState, key: testKey, alg: CCAlgorithm(alg), keyLength: ccKeySize, blockSize: kCCBlockSizeAES128)
     }
 }

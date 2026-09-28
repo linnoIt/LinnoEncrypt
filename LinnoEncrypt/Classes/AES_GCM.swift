@@ -6,11 +6,15 @@
 //
 
 import CryptoKit
+import Foundation
 
 @available(iOS 13.0, *)
 public final class AES_GCM : SymmetricEncryptDecryptProducer {
     
     var symmetricKey: SymmetricKey?
+    
+    /// AES_GCM 使用 SymmetricKey 作为密钥来源，不依赖文本 key，跳过空 key 校验
+    override var usesTextKey: Bool { return false }
     /**
      - Parameter key： If you want to use AES-GCM, Use Curve-25519 to generate SymmetricKey
      */
@@ -18,7 +22,8 @@ public final class AES_GCM : SymmetricEncryptDecryptProducer {
         self.init()
         symmetricKey = key
     }
-    private override init() {
+    /// 供外部（其他模块 / 其他项目）构造；需通过 init(key:) 注入 SymmetricKey 后方可加解密
+    public override init() {
         super.init()
     }
     

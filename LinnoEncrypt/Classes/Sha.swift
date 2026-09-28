@@ -6,9 +6,13 @@
 
 import CryptoKit
 import CommonCrypto
+import Foundation
 
-struct Sha : HashType {
-    
+public struct Sha : HashType {
+
+    /// 供外部（其他模块 / 其他项目）构造
+    public init() { }
+
     public enum hashValue {
         /** sha256*/
         case hash256
@@ -39,7 +43,10 @@ struct Sha : HashType {
             errorTips(tips: error_length)
            return error_length
         }
-        let hashData = sourceString.data(using: .utf8)!
+        guard let hashData = sourceString.data(using: .utf8) else {
+            errorTips(tips: tips_data_type_error)
+            return error_length
+        }
         if #available(iOS 13.0, *) {
             var sha:any HashFunction
             switch hashType {

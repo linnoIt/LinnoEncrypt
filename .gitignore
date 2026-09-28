@@ -31,6 +31,9 @@ Carthage/Build
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 # 
 # Note: if you ignore the Pods directory, make sure to uncomment
-# `pod install` in .travis.yml
+# `pod install` in your CI workflow
 #
 # Pods/
+
+# WorkBuddy 工作区数据（记忆、本地会话状态），不进版本库
+.workbuddy/

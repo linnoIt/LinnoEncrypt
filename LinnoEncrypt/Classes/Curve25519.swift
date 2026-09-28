@@ -6,6 +6,7 @@
 //
 
 import CryptoKit
+import Foundation
 ///  Curve_25519
 ///  功能一：验签
 ///
@@ -22,14 +23,17 @@ public struct Curve_25519 {
     }
     // 生成本地加密私钥
      public static func generateLocalPrivateKey(data: Data? = nil) -> Curve25519.KeyAgreement.PrivateKey? {
-        guard (data != nil) else {
-            if let res = try? Curve25519.KeyAgreement.PrivateKey(rawRepresentation: data!) {
-                return res
-            }
-            errorTips(tips: error_curve_25519_data_generate_key_error)
-            return nil
+        // 旧实现的分支写反了：data 为 nil（默认调用）时会走 else 分支并对 nil 强解包而崩溃；
+        // data 非 nil 时又直接返回新随机密钥、把 data 丢掉。这里按原意修正为：
+        // 不传 data → 生成新密钥；传了 data → 用 data 还原密钥。
+        guard let data = data else {
+            return Curve25519.KeyAgreement.PrivateKey()
         }
-        return Curve25519.KeyAgreement.PrivateKey()
+        if let res = try? Curve25519.KeyAgreement.PrivateKey(rawRepresentation: data) {
+            return res
+        }
+        errorTips(tips: error_curve_25519_data_generate_key_error)
+        return nil
     }
     // 获取服务器公钥数据生成服务器公钥
     public static func generateServerPublicKey<D>(data: D) -> Curve25519.KeyAgreement.PublicKey?  where D : ContiguousBytes {
@@ -67,24 +71,23 @@ public struct Curve_25519 {
     
     // 生成验签私钥
     public static func generateSigningPrinvateKey(data: Data? = nil) -> Curve25519.Signing.PrivateKey? {
-        guard (data != nil) else {
-            if let res = try? Curve25519.Signing.PrivateKey(rawRepresentation: data!) {
-                return res
-            }
-            errorTips(tips: error_curve_25519_data_generate_key_error)
-            return nil
+        // 同 generateLocalPrivateKey：修正原实现写反的分支与 nil 强解包
+        guard let data = data else {
+            return Curve25519.Signing.PrivateKey()
         }
-        return Curve25519.Signing.PrivateKey()
+        if let res = try? Curve25519.Signing.PrivateKey(rawRepresentation: data) {
+            return res
+        }
+        errorTips(tips: error_curve_25519_data_generate_key_error)
+        return nil
     }
     // 生成验签公钥
     public static func generateSigningPublicKey<D>(privateKey: Curve25519.Signing.PrivateKey? = nil, data: D? = nil) -> Curve25519.Signing.PublicKey?  where D : ContiguousBytes {
-        if privateKey != nil {
-            return privateKey?.publicKey
+        if let privateKey = privateKey {
+            return privateKey.publicKey
         }
-        if data != nil {
-            if let key = try? Curve25519.Signing.PublicKey(rawRepresentation: data!){
-                return key
-            }
+        if let data = data, let key = try? Curve25519.Signing.PublicKey(rawRepresentation: data) {
+            return key
         }
         errorTips(tips: error_curve_25519_data_generate_key_error)
         return nil

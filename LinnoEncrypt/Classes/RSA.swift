@@ -3,6 +3,10 @@
 //
 //  Created by 韩增超 on 2022/10/18.
 //
+
+import Foundation
+import Security
+
 public struct RSA : AsymmetricType {
     // bits
     public enum RSAKeySize: Int {
@@ -53,11 +57,14 @@ public struct RSA : AsymmetricType {
         if publicKeyTag == nil {
             _setAttribute()
         }
-        let keyTuple = generateKeyPair(keySize: keySize.rawValue, keyType: kSecAttrKeyTypeRSA)
-        privateSecKey = keyTuple?.0
-        publicSecKey =  keyTuple?.1
-        _saveRSAKeyToKeychain(key: publicSecKey!, keySize: keySize.rawValue, isPrivate: false)
-        _saveRSAKeyToKeychain(key: privateSecKey!, keySize: keySize.rawValue, isPrivate: true)
+        guard let keyTuple = generateKeyPair(keySize: keySize.rawValue, keyType: kSecAttrKeyTypeRSA) else {
+            errorTips(tips: error_create_privateKey)
+            return
+        }
+        privateSecKey = keyTuple.0
+        publicSecKey =  keyTuple.1
+        _saveRSAKeyToKeychain(key: keyTuple.1, keySize: keySize.rawValue, isPrivate: false)
+        _saveRSAKeyToKeychain(key: keyTuple.0, keySize: keySize.rawValue, isPrivate: true)
     }
     
     /**
@@ -69,15 +76,19 @@ public struct RSA : AsymmetricType {
         - default： get with keychain
      */
     public mutating func setPrivateSecKey(keyString: String? = nil, P12Path: String? = nil, P12Password: String? = "") {
-        guard keyString == nil else {
-            privateSecKey = _addKeyWithString(keyString!,kSecAttrKeyClassPrivate)
+        if let keyString = keyString {
+            privateSecKey = _addKeyWithString(keyString, kSecAttrKeyClassPrivate)
             return
         }
-        guard P12Path == nil else {
-            privateSecKey = getPrivateKeyWithP12(P12Path! ,with: P12Password)
+        if let P12Path = P12Path {
+            privateSecKey = getPrivateKeyWithP12(P12Path, with: P12Password)
             return
         }
-        privateSecKey = _getRSAKeyFromKeychain(isPrivate: kSecAttrKeyClassPrivate, keySize: keySize.rawValue, ApplicationTag: privateKeyTag!, ApplicationLabel: privateKeyIdentifier!)
+        guard let tag = privateKeyTag, let label = privateKeyIdentifier else {
+            errorTips(tips: error_private_secKey_null)
+            return
+        }
+        privateSecKey = _getRSAKeyFromKeychain(isPrivate: kSecAttrKeyClassPrivate, keySize: keySize.rawValue, ApplicationTag: tag, ApplicationLabel: label)
     }
     /**
      set publicKey
@@ -87,29 +98,33 @@ public struct RSA : AsymmetricType {
         - default：get with keychain
      */
     public mutating func setPublicSecKey(keyString: String? = nil, DERPath: String? = nil) {
-        guard keyString == nil else {
-            publicSecKey = _addKeyWithString(keyString!,kSecAttrKeyClassPublic)
+        if let keyString = keyString {
+            publicSecKey = _addKeyWithString(keyString, kSecAttrKeyClassPublic)
             return
         }
-        guard DERPath == nil else {
-            publicSecKey = getPublicKeywithDER(DERPath!)
+        if let DERPath = DERPath {
+            publicSecKey = getPublicKeywithDER(DERPath)
             return
         }
-        publicSecKey = _getRSAKeyFromKeychain(isPrivate: kSecAttrKeyClassPublic, keySize: keySize.rawValue, ApplicationTag: publicKeyTag!, ApplicationLabel: publicKeyIdentifier!)
+        guard let tag = publicKeyTag, let label = publicKeyIdentifier else {
+            errorTips(tips: error_public_secKey_null)
+            return
+        }
+        publicSecKey = _getRSAKeyFromKeychain(isPrivate: kSecAttrKeyClassPublic, keySize: keySize.rawValue, ApplicationTag: tag, ApplicationLabel: label)
     }
     /** If publicKey exists , get public key to string */
     public func publicKeyString() -> String? {
-        guard publicSecKey != nil else {
+        guard let key = publicSecKey else {
             return nil
         }
-        return _secKeyToString(publicSecKey!)
+        return _secKeyToString(key)
     }
     /** If privateKey exists , get private key to string */
     public func privateKeyString() -> String? {
-        guard privateSecKey != nil else {
+        guard let key = privateSecKey else {
             return nil
         }
-        return _secKeyToString(privateSecKey!)
+        return _secKeyToString(key)
     }
     /**
      - Parameters:
@@ -127,13 +142,17 @@ public struct RSA : AsymmetricType {
            let b64Key = data.base64EncodedString()
            return b64Key
         }
+        // 导出失败：错误对象遵循 Create Rule，必须消费掉引用，否则泄漏一个 CFError
+        _ = error?.takeRetainedValue()
         return nil
     }
     private mutating func _setAttribute() {
-        privateKeyIdentifier = identifierString.appending(".privateKey")
-        publicKeyIdentifier = identifierString.appending(".publicKey")
-        privateKeyTag = privateKeyIdentifier!.data(using: .utf8)!
-        publicKeyTag = publicKeyIdentifier!.data(using: .utf8)!
+        let privateIdentifier = identifierString.appending(".privateKey")
+        let publicIdentifier = identifierString.appending(".publicKey")
+        privateKeyIdentifier = privateIdentifier
+        publicKeyIdentifier = publicIdentifier
+        privateKeyTag = privateIdentifier.data(using: .utf8)
+        publicKeyTag = publicIdentifier.data(using: .utf8)
     }
     /** Get the public and private keys from the key string */
     private func _addKeyWithString(_ string: String, _ keyClass: CFString) -> SecKey? {
@@ -155,11 +174,15 @@ public struct RSA : AsymmetricType {
     private func _saveRSAKeyToKeychain(key: SecKey, keySize: size_t, isPrivate: Bool) {
         var saveDictionary = [String: Any]()
         let keyClass = isPrivate ? kSecAttrKeyClassPrivate : kSecAttrKeyClassPublic
+        guard let keyTag = isPrivate ? privateKeyTag : publicKeyTag else {
+            errorTips(tips: error_save_keychain)
+            return
+        }
         saveDictionary[kSecClass as String] = kSecClassKey
         saveDictionary[kSecAttrKeyType as String] = kSecAttrKeyTypeRSA
-        saveDictionary[kSecAttrApplicationTag as String] = isPrivate ? privateKeyTag : publicKeyTag
+        saveDictionary[kSecAttrApplicationTag as String] = keyTag
         saveDictionary[kSecAttrKeyClass as String] = keyClass
-        saveDictionary[kSecValueData as String] = getKeyDataFrom(secKey: key, tag: (isPrivate ? privateKeyTag : publicKeyTag)!, keyType: kSecAttrKeyTypeRSA)
+        saveDictionary[kSecValueData as String] = getKeyDataFrom(secKey: key, tag: keyTag, keyType: kSecAttrKeyTypeRSA)
         saveDictionary[kSecAttrKeySizeInBits as String] = keySize
         saveDictionary[kSecAttrEffectiveKeySize as String] = SecKeyGetBlockSize(key)
         saveDictionary[kSecAttrCanDerive as String] = kCFBooleanFalse
@@ -205,17 +228,20 @@ extension RSA {
         var error: Unmanaged<CFError>?
         let resData = edFunc(key, algorithm, plaintext, &error) as Data?
         guard error == nil else {
-            errorTips(tips: "\(error_rsa_encrypt) \(String(describing: error))")
+            // 顺序不可调换：先取描述，再消费引用（takeRetainedValue 会释放对象），否则 use-after-free
+            let tipsString = "\(error_rsa_encrypt) \(String(describing: error))"
+            _ = error?.takeRetainedValue()
+            errorTips(tips: tipsString)
             return nil
         }
         return  resData
     }
     private func _encryptDecrypt(datas: [Data], key: SecKey, alg: SecKeyAlgorithm, edFunc: ED_Func) -> Data? {
-        guard datas.count > 0 else {
+        guard let first = datas.first else {
             return nil
         }
         if datas.count == 1 {
-            return _encryptedDecryptedData(key, alg, datas.first! as CFData, edFunc)
+            return _encryptedDecryptedData(key, alg, first as CFData, edFunc)
         }
         var res:Data = Data()
         for sourceData in datas {
@@ -228,16 +254,20 @@ extension RSA {
     }
     
     private func _encrypt(source: Data) -> Data? {
-        if let datas = _encryptDecryptPrepare(source: source, key: self.publicSecKey, defaultLength: keySize .rawValue / 8 - keyLength){
-            return _encryptDecrypt(datas: datas, key:  self.publicSecKey!, alg: rsaAlgorithm, edFunc: SecKeyCreateEncryptedData)
+        // 保持原有求值顺序：先由 _encryptDecryptPrepare 校验并打印错误（key 为空 / 源为空），
+        // 再取出此处必然非空的 publicSecKey（避免对 Optional 强解包）。
+        guard let datas = _encryptDecryptPrepare(source: source, key: self.publicSecKey, defaultLength: keySize .rawValue / 8 - keyLength),
+              let key = self.publicSecKey else {
+            return nil
         }
-        return nil
+        return _encryptDecrypt(datas: datas, key: key, alg: rsaAlgorithm, edFunc: SecKeyCreateEncryptedData)
     }
     private func _decrypt(source: Data) -> Data? {
-        if let datas = _encryptDecryptPrepare(source: source, key: self.privateSecKey, defaultLength: keySize.rawValue / 8) {
-            return _encryptDecrypt(datas: datas, key:  self.privateSecKey!, alg: rsaAlgorithm, edFunc: SecKeyCreateDecryptedData)
+        guard let datas = _encryptDecryptPrepare(source: source, key: self.privateSecKey, defaultLength: keySize.rawValue / 8),
+              let key = self.privateSecKey else {
+            return nil
         }
-       return nil
+        return _encryptDecrypt(datas: datas, key: key, alg: rsaAlgorithm, edFunc: SecKeyCreateDecryptedData)
     }
 }
 
